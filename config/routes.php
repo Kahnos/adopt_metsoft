@@ -54,7 +54,7 @@ Router::scope('/', function ($routes) {
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
-    // Route to connect to static redirect URI for Instagram API
+    // Routes to connect to static redirect URI for Instagram API
     $routes->connect('/*', ['controller' => 'Pages', 'action' => 'display']);
 
     /**
@@ -75,7 +75,6 @@ Router::scope('/', function ($routes) {
      */
     $routes->fallbacks('DashedRoute');
 });
-
 
 /**
  * Load all plugin routes.  See the Plugin documentation on

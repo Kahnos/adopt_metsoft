@@ -54,6 +54,8 @@ use Cake\Routing\DispatcherFactory;
 use Cake\Utility\Inflector;
 use Cake\Utility\Security;
 
+\Cake\Core\Plugin::load('BootstrapUI');
+
 /**
  * Read configuration file and inject configuration into various
  * CakePHP classes.
