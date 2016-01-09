@@ -23,6 +23,7 @@
         <p>Click the button to authenticate Instagram account</p>
         <br>
         <a href="https://api.instagram.com/oauth/authorize/?client_id=7669fceb484944bc8348d1b28fd4b049&redirect_uri=http://localhost/adopt_metsoft/instagram&response_type=token&scope=public_content" class="btn btn-lg btn-info">Authenticate</a>
+
     </div>
 
 
