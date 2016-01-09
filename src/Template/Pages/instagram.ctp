@@ -15,9 +15,12 @@
         function getAccessToken() {
             var locationStr = window.location.toString();
             access_token = locationStr.substring(54);
-            //document.getElementById("p_at").innerHtml = "The access_token is " + at;
             console.log("access_token: " + access_token);
             document.getElementById("p_at").innerHTML = "access_token = " + access_token;
+        }
+
+        function tagMascota(){
+            window.location.assign("https://api.instagram.com/v1/tags/mascota/media/recent?access_token=" + access_token);
         }
 
         window.onload = getAccessToken;
@@ -35,8 +38,8 @@
     <div class="jumbotron text-center">
         <h1>¡Instagram redirected!</h1>
         <br>
-        <button class="btn btn-lg btn-info" >Test Tag Endpoint</button>
-        <!--        <a href="#" class="btn btn-lg btn-info" onclick='asd()'>Test Tag Endpoint</a>-->
+        <button class="btn btn-lg btn-info" onclick="tagMascota()">Test Tag Endpoint - Adopcion</button>
+<!--        <a href="#" class="btn btn-lg btn-info">Test Tag Endpoint - Mascota</a>-->
         <p id="p_at"></p>
 
     </div>
