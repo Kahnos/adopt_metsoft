@@ -1,0 +1,13 @@
+{
+    "name": "vendor/met_soft",
+    "description": "Composer stuff",
+    "authors": [
+        {
+            "name": "Jesus Castro",
+            "email": "jesus.e.castro.m@gmail.com"
+        }
+    ],
+    "require": {
+	"j7mbo/twitter-api-php": "dev-master"
+	}
+}
