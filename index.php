@@ -61,48 +61,11 @@
     <div class="container">
 
         <div class="row">
-<!--
-            <div class="col-md-3">
-                <p class="lead">Shop Name</p>
-                <div class="list-group">
-                    <a href="#" class="list-group-item">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
-                </div>
-            </div>
--->
             <div class="col-md-12">
+                
+                
 <!--
-                <div class="row carousel-holder">
-
-                    <div class="col-md-12">
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
-                                <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
-                                <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
-                            </div>
-                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
+                Here goes the filters
 -->
 <form class="form-horizontal" action="index.php">
 <fieldset>
@@ -142,6 +105,19 @@
     <button id="submitbutton" name="submitbutton" class="btn btn-primary" type="submit" value="ok">Buscar</button>
   </div>
 </div>
+    
+
+<!-- Modal box -->
+<div id="openModal" class="modalDialog">
+	<div>
+		<a href="#close" title="Close" class="close">X</a>
+		<h2>Modal Box</h2>
+		<p>This is a sample modal box that can be created using the powers of CSS3.</p>
+		<p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users
+        </p>
+	</div>
+</div>
+<!-- API Logic -->
 <?php                
 
 require_once('vendor\j7mbo\twitter-api-php\TwitterAPIExchange.php');
@@ -155,14 +131,15 @@ $settings = array(
 
 $url = 'https://api.twitter.com/1.1/search/tweets.json';
 
-$getfield = '?q=pikachu&count=5';
+$getfield = '?q=instagram&count=5';
 
-//if ($_GET['submitbutton']=='ok')
-//{
-    if($_GET['category']=='1') $getfield = '?q=adopcion+perro&count=5';
-    if($_GET['category']=='2') $getfield = '?q=adopcion+gato&count=5';
-    if($_GET['category']=='3') $getfield = '?q=miss+colombia&count=5';
-//}
+//Validar que ya se haya cargado una vez el formulario
+if (isset($_GET['submitbutton']))
+{
+    if($_GET['category']=='1') $getfield = '?q=adopcion+perro&count=20';
+    if($_GET['category']=='2') $getfield = '?q=adopcion+gato&count=20';
+    if($_GET['category']=='3') $getfield = '?q=miss+colombia&count=20';
+}
 $requestMethod = 'GET';
 
 $twitter = new TwitterAPIExchange($settings);
@@ -178,63 +155,24 @@ $counter = 0;
 </fieldset>
 </form>
 
-                <div class="row">
-<!-- Original
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$24.99</h4>
-                                <h4><a href="#">First Product</a>
-                                </h4>
-                                <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
--->
-                    <?php
-                    foreach($tweets['statuses'] as $tweet)
-                    {
-                        echo '<div class="col-sm-4 col-lg-4 col-md-4"><div class="thumbnail">';
-                        // if (if(isset($tweet['entities']['media'][0]['media_url'])))
-                        echo "<img src='".$tweet['entities']['media'][0]['media_url']."' ><div class='caption'>";
-                        //else
-                        //echo "<img src='".$tweet['entities']['media'][0]['media_url']."' ><div class='caption'>";
-                        echo "<p>".$tweet['text']."<p/>";
-                        echo "</div></div></div>";
-                    }
-                    ?>
-<!--
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$64.99</h4>
-                                <h4><a href="#">Second Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                
-                            </div>
-                        </div>
-                    </div>
--->
-                </div>
-
             </div>
-
         </div>
-
+        <div class="row">
+            <?php
+                foreach($tweets['statuses'] as $tweet)
+                {
+                    //Validar que el tweet tenga foto
+                    if (isset($tweet['entities']['media'])){
+                    echo '<div class="col-sm-4"><div class="thumbnail">';
+                    echo "<img src='".$tweet['entities']['media'][0]['media_url']."' ><div class='caption'>";
+                    echo "<p>".$tweet['text']."</p>";
+                    echo "<a href='#openModal' class='openModal'>Open Modal</a>";
+                    echo "</div></div></div>";
+                    }
+                }
+            ?>
     </div>
+    
     <!-- /.container -->
 
     <div class="container">
@@ -255,6 +193,7 @@ $counter = 0;
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+    <script src="js/j_shelter.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
