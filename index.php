@@ -34,26 +34,21 @@
             $lowerTweet = strtolower($tweet);
             $wordArray = explode(" ", $lowerTweet);
             $count = 0;
-            echo "lowertweet: " . $lowerTweet;
-            echo print_r(array_values($wordArray)) . "</br>";
-            
+
             foreach ($wordArray as $word) {
-                if ( (strstr("vacuna", $word)) || (strstr("bacuna", $word)) ){
-                    if (count >= 2){
-                        echo "word : " . $word;
-                        if (!(strcmp(wordArray[count-1], "no")) || 
-                            !(strcmp(wordArray[count-2], "no")) ||
-                            !(strcmp(wordArray[count-1], "sin")) ||
-                            !(strstr("falta", $wordArray[count-1])))
-                        {   
-                            echo "Sí tiene vacuna. Se halló en" . count . "." . "</br>";
+                if ( (strstr($word, "vacuna")) || (similar_text($word, "vacuna") >= 4) ){
+                    if ($count >= 2){
+                        if (($wordArray[$count-1] != "no") &&
+                            ($wordArray[$count-2] != "no") &&
+                            ($wordArray[$count-1] != "sin") &&
+                            !(strstr("falta", $wordArray[$count-1])))
+                        {
                             return 1;
                         }
                     }
                 }
                 $count++;
             }
-            echo "No tiene vacuna." . "</br>";
             return 0;
         }
     ?>
@@ -96,20 +91,11 @@
 
         <div class="row">
             <div class="col-md-12">
-                
-                
+
+
 <!--
                 Here goes the filters
 -->
-<?php
-    $tweet = "Adopta este perro vacunado hace muchos dias";
-    $tweet2 = "Adopta este perro bacunado hace muchos dias";
-    $tweet3 = "Adopta este perro bañado hace muchos dias";
-    
-    extractVaccine($tweet);
-    extractVaccine($tweet2);
-    extractVaccine($tweet3);
-?>
 
 <form class="form-horizontal" action="index.php">
 <fieldset>
@@ -126,19 +112,19 @@
       <input type="checkbox" name="category" id="category-0" value="1">
       Perros
     </label>
-	</div>
+    </div>
   <div class="checkbox">
     <label for="category-1">
       <input type="checkbox" name="category" id="category-1" value="2">
       Gatos
     </label>
-	</div>
+    </div>
   <div class="checkbox">
     <label for="category-2">
       <input type="checkbox" name="category" id="category-2" value="3">
       Otros
     </label>
-	</div>
+    </div>
   </div>
 </div>
 
@@ -149,20 +135,20 @@
     <button id="submitbutton" name="submitbutton" class="btn btn-primary" type="submit" value="ok">Buscar</button>
   </div>
 </div>
-    
+
 
 <!-- Modal box -->
 <div id="openModal" class="modalDialog">
-	<div>
-		<a href="#close" title="Close" class="close">X</a>
-		<h2>Modal Box</h2>
-		<p>This is a sample modal box that can be created using the powers of CSS3.</p>
-		<p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users
+    <div>
+        <a href="#close" title="Close" class="close">X</a>
+        <h2>Modal Box</h2>
+        <p>This is a sample modal box that can be created using the powers of CSS3.</p>
+        <p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users
         </p>
-	</div>
+    </div>
 </div>
 <!-- API Logic -->
-<?php                
+<?php
 
 require_once('adopt_functions.php');
 
@@ -239,7 +225,7 @@ echo $twitter2->buildOauth($url2, $requestMethod2)
 //Worked
 ?>
 
-    
+
 </fieldset>
 </form>
 
@@ -265,7 +251,7 @@ echo $twitter2->buildOauth($url2, $requestMethod2)
                 }
             ?>
     </div>
-    
+
     <!-- /.container -->
 
     <div class="container">
