@@ -165,20 +165,12 @@
 <?php                
 
 require_once('adopt_functions.php');
-/*
-require_once('vendor\j7mbo\twitter-api-php\TwitterAPIExchange.php');
-
-$settings = array(
-    'oauth_access_token' => "281876500-E8bG9YpLhJWk3oBBeUw5ZwdX9jcrauaGaGlWMXjH",
-    'oauth_access_token_secret' => "mTsqI8baeNXLgfs0qq2nWaWusUOvjcMoE07K6u1Ue8Bxg",
-    'consumer_key' => "71fimlcGDPMcAzen0x3cWQ661",
-    'consumer_secret' => "Jah4ATI9Rqtpk9QgfcuVQdLxhyPCbGDQAlytaHqMwcFcGyWyIa"
-);
-*/
 
 $settings = set_twt_api();
 
 $url = 'https://api.twitter.com/1.1/search/tweets.json';
+
+// **** PLACEHOLDER FILTER ****
 
 $getfield = '?q=instagram&count=5';
 
@@ -189,6 +181,10 @@ if (isset($_GET['submitbutton']))
     if($_GET['category']=='2') $getfield = '?q=adopcion+gato&count=20';
     if($_GET['category']=='3') $getfield = '?q=miss+colombia&count=20';
 }
+
+// **** END OF PLACE HOLDER FILTER ****
+
+/*
 $requestMethod = 'GET';
 
 $twitter = new TwitterAPIExchange($settings);
@@ -196,7 +192,9 @@ $twitter = new TwitterAPIExchange($settings);
 $tweets = json_decode($twitter->setGetfield($getfield)
     ->buildOauth($url, $requestMethod)
     ->performRequest(),true);
+*/
 
+$tweets = get_twt($settings,$getfield,$url);
 $counter = 0;
 
 //----------<Cargar en base de datos>

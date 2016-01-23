@@ -1,4 +1,6 @@
 <?php
+
+//Call to the api in order
 function set_twt_api(){
     require_once('vendor\j7mbo\twitter-api-php\TwitterAPIExchange.php');
 
@@ -11,4 +13,18 @@ function set_twt_api(){
     
     return $settings;
 }
+
+//Making a GET request with twitter api
+function get_twt($settings,$getfield,$url){
+    $requestMethod = 'GET';
+
+    $twitter = new TwitterAPIExchange($settings);
+
+    $tweets = json_decode($twitter->setGetfield($getfield)
+        ->buildOauth($url, $requestMethod)
+        ->performRequest(),true);
+
+    return $tweets;
+}
+
 ?>
