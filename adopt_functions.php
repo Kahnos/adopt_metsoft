@@ -1,4 +1,5 @@
 <?php
+//---- TWITTER API
 
 //Call to the api in order
 function set_twt_api(){
@@ -26,5 +27,8 @@ function get_twt($settings,$getfield,$url){
 
     return $tweets;
 }
+
+//---- DATABASE
+
 
 ?>

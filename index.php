@@ -168,10 +168,9 @@ require_once('adopt_functions.php');
 
 $settings = set_twt_api();
 
-$url = 'https://api.twitter.com/1.1/search/tweets.json';
-
 // **** PLACEHOLDER FILTER ****
 
+$url = 'https://api.twitter.com/1.1/search/tweets.json';
 $getfield = '?q=instagram&count=5';
 
 //Validar que ya se haya cargado una vez el formulario
@@ -184,17 +183,8 @@ if (isset($_GET['submitbutton']))
 
 // **** END OF PLACE HOLDER FILTER ****
 
-/*
-$requestMethod = 'GET';
-
-$twitter = new TwitterAPIExchange($settings);
-
-$tweets = json_decode($twitter->setGetfield($getfield)
-    ->buildOauth($url, $requestMethod)
-    ->performRequest(),true);
-*/
-
 $tweets = get_twt($settings,$getfield,$url);
+
 $counter = 0;
 
 //----------<Cargar en base de datos>
