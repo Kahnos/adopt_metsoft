@@ -30,5 +30,52 @@ function get_twt($settings,$getfield,$url){
 
 //---- DATABASE
 
+// Must be changed, placeholder
+function set_db(){
+    $username = "root";
+    $password = "";
+    $hostname = "localhost"; 
+
+
+    //connection to the database
+    $dbhandle = mysql_connect($hostname, $username, $password) 
+     or die("Unable to connect to MySQL");
+    echo "Connected to MySQL<br>";
+
+    //select a database to work with
+    $selected = mysql_select_db("eventos",$dbhandle) 
+      or die("Could not select examples");
+
+    //execute the SQL query and return records
+    $result = mysql_query("SELECT nombre FROM athletes");
+
+    //fetch tha data from the database 
+    while ($row = mysql_fetch_array($result)) {
+       echo " Name:".$row{'nombre'}."<br>";
+    }
+    //close the connection
+    mysql_close($dbhandle);
+}
+
+//PRUEBA DE ACTUALIZACION DE ESTADO - WORKING
+/** URL for REST request, see: https://dev.twitter.com/docs/api/1.1/ **/
+//$url2 = 'https://api.twitter.com/1.1/statuses/update.json';
+/*
+$url2 = 'https://upload.twitter.com/1.1/media/upload.json';
+
+$requestMethod2 = 'POST';
+// POST fields required by the URL above. See relevant docs as above
+$postfields2 = array(
+    'media' => base64_encode(file_get_contents('espeon.png'))
+);
+// Perform the request and echo the response
+$twitter2 = new TwitterAPIExchange($settings);
+echo $twitter2->buildOauth($url2, $requestMethod2)
+             ->setPostfields($postfields2)
+             ->performRequest();
+*/
+    
+//"689189429546741760" -> Espeon image
+//Worked
 
 ?>
