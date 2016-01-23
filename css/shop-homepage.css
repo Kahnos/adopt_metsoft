@@ -55,6 +55,15 @@ footer {
     margin: 50px 0;
 }
 
+.image{
+    position:relative;
+    overflow:hidden;
+    padding-bottom:100%;
+}
+.image img{
+    position:absolute;
+}
+
 /* -- Modal section --*/
 .modalDialog {
 	position: fixed;
@@ -66,15 +75,15 @@ footer {
 	background: rgba(0,0,0,0.8);
 	z-index: 99999;
 	opacity:0;
-	-webkit-transition: opacity 400ms ease-in;
-	-moz-transition: opacity 400ms ease-in;
-	transition: opacity 400ms ease-in;
 	pointer-events: none;
 }
 
 .modalDialog:target {
 	opacity:1;
 	pointer-events: auto;
+    -webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
 }
 
 .modalDialog > div {

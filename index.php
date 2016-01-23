@@ -164,6 +164,8 @@
 <!-- API Logic -->
 <?php                
 
+require_once('adopt_functions.php');
+/*
 require_once('vendor\j7mbo\twitter-api-php\TwitterAPIExchange.php');
 
 $settings = array(
@@ -172,6 +174,9 @@ $settings = array(
     'consumer_key' => "71fimlcGDPMcAzen0x3cWQ661",
     'consumer_secret' => "Jah4ATI9Rqtpk9QgfcuVQdLxhyPCbGDQAlytaHqMwcFcGyWyIa"
 );
+*/
+
+$settings = set_twt_api();
 
 $url = 'https://api.twitter.com/1.1/search/tweets.json';
 
@@ -200,6 +205,7 @@ $username = "root";
 $password = "";
 $hostname = "localhost"; 
 
+/*
 //connection to the database
 $dbhandle = mysql_connect($hostname, $username, $password) 
  or die("Unable to connect to MySQL");
@@ -218,7 +224,7 @@ while ($row = mysql_fetch_array($result)) {
 }
 //close the connection
 mysql_close($dbhandle);
-    
+*/
 //----------
 
 
@@ -253,15 +259,20 @@ echo $twitter2->buildOauth($url2, $requestMethod2)
         </div>
         <div class="row">
             <?php
-                foreach($tweets['statuses'] as $tweet)
-                {
-                    //Validar que el tweet tenga foto
-                    if (isset($tweet['entities']['media'])){
-                    echo '<div class="col-sm-4"><div class="thumbnail">';
-                    echo "<img src='".$tweet['entities']['media'][0]['media_url']."' ><div class='caption'>";
-                    echo "<p>".$tweet['text']."</p>";
-                    echo "<a href='#openModal' class='openModal'>Open Modal</a>";
-                    echo "</div></div></div>";
+            foreach($tweets['statuses'] as $tweet){
+                if (isset($tweet['entities']['media'])){ ?>
+                        <div class="col-xs-6 col-sm-4 col-md-3">
+                            <div class="thumbnail">
+                                <div class='image'>
+                                    <img src='<?= $tweet['entities']['media'][0]['media_url']?>' class='img img-responsive full-width'>";
+                                </div>
+                                <div class='caption'>
+                                    <p><?=$tweet['text']?></p>
+                                    <a href='#openModal' class='openModal'>Open Modal</a>";
+                                </div>
+                            </div>
+                        </div>
+            <?php
                     }
                 }
             ?>
