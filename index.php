@@ -24,40 +24,6 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <?php
-        /*
-        *   Function that checks if the tweet contains information about vaccines.
-        +   Input = The tweet to check.
-        *   Returns = True if the animal is vaccinated, False if not.
-        */
-        function extractVaccine ($tweet){
-            $lowerTweet = strtolower($tweet);
-            $wordArray = explode(" ", $lowerTweet);
-            $count = 0;
-            echo "lowertweet: " . $lowerTweet;
-            echo print_r(array_values($wordArray)) . "</br>";
-            
-            foreach ($wordArray as $word) {
-                if ( (strstr("vacuna", $word)) || (strstr("bacuna", $word)) ){
-                    if (count >= 2){
-                        echo "word : " . $word;
-                        if (!(strcmp(wordArray[count-1], "no")) || 
-                            !(strcmp(wordArray[count-2], "no")) ||
-                            !(strcmp(wordArray[count-1], "sin")) ||
-                            !(strstr("falta", $wordArray[count-1])))
-                        {   
-                            echo "Sí tiene vacuna. Se halló en" . count . "." . "</br>";
-                            return 1;
-                        }
-                    }
-                }
-                $count++;
-            }
-            echo "No tiene vacuna." . "</br>";
-            return 0;
-        }
-    ?>
-
 </head>
 
 <body>
@@ -101,16 +67,6 @@
 <!--
                 Here goes the filters
 -->
-<?php
-    $tweet = "Adopta este perro vacunado hace muchos dias";
-    $tweet2 = "Adopta este perro bacunado hace muchos dias";
-    $tweet3 = "Adopta este perro bañado hace muchos dias";
-    
-    //extractVaccine($tweet);
-    //extractVaccine($tweet2);
-    //extractVaccine($tweet3);
-?>
-
                 
 <!-- PLACEHOLDER FORM -->
 <form class="form-horizontal" action="index.php">
