@@ -80,13 +80,13 @@
     // Strings de prueba
     $testTweets = array(
                         "El tweet 0414-8893387 viene de correo@dom.inio.com la mascota tiene 5 años",
-                        "adopta a este gatito, es cariñoso, vacunado, castrado y esterilizado 04256354765",
+                        "adopta a este gatito, es cariñoso, vacunado, castrado y esterilizado 04256354765, ahora",
                         "el es danielito es un gato muy amoroso sin vacunas y esta castrado, escribe a lib.corrales.bravo@gma.il.net",
                         "gato en adopcion kaztrado de 2 años",
                         "adopta a boby un perrito callegero sacado de las calles lo vacunamos y lo castramos, interesados comunicarse",
-                        "adopta a mimi un gatito callegero de 12 años sacado de las calles lo vacunamos 23123+4+512, interesados comunicarse",
+                        "adopta a mimi un gatito callegero de 12 años, sacado de las calles lo vacunamos 23123+4+512, interesados comunicarse",
                         "adopta a este perro, no esta castrado pero si vacunado",
-                        "gato en adopcion sin castracion, llama al 0424-212+35-12",
+                        "gato en adopcion sin castracion, llama al ,0424-212+35-12.",
                         "algun interesado en adoptar a uno de estos cachorros? estan vacunados, no castrados, adoptalos te daran el amor quer tanto nececitas",
                         "el gato no esta castrado, contacta a lib.corrales.bravo@gmail.com, llama al 042421235-12",
                         "el gato si esta esteril",

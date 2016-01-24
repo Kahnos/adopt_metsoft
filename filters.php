@@ -75,6 +75,7 @@
 
         foreach ($wordArray as $word){
             if (strlen($word) >= 7){
+                $word = trim($word, '.,');
                 $aux = true;
                 for ($j=0; $j < strlen($word); $j++){
                     if ( ( ($word[$j] < '0') || ($word[$j] > '9') ) &&
@@ -106,9 +107,10 @@
 
         foreach ($wordArray as $word){
             if ( $count < ($wordArraylength - 1) ){
+                $word = trim($word, '.,');
                 if ((strlen($word) <= 2) &&
                     (strlen($word) > 0) &&
-                    ($wordArray[$count + 1] == "años")
+                    (strstr($wordArray[$count + 1], "años"))
                    ){
                     $aux = true;
                     for ($j=0; $j < strlen($word); $j++){
