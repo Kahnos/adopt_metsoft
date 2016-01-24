@@ -75,13 +75,17 @@
 
         foreach ($wordArray as $word){
             if (strlen($word) >= 7){
+                $aux = true;
                 for ($j=0; $j < strlen($word); $j++){
-                    if ( !( ($word[$j] < '0') || ($word[$j] > '9') ) &&
-                        !($word[$j] != '-') &&
-                        !($word[$j] != '+') ){
-                        echo "Esto es un teléfono: " . $word . "</br>";
-                        return $word;
+                    if ( ( ($word[$j] < '0') || ($word[$j] > '9') ) &&
+                        ($word[$j] != '-') &&
+                        ($word[$j] != '+') ){
+                        $aux = false;
                     }
+                }
+                if($aux == true){
+                    echo "Esto es un teléfono: " . $word . "</br>";
+                    return $word;
                 }
             }
         }
@@ -99,7 +103,6 @@
         $wordArray = explode(" ", $lowerTweet);
         $count = 0;
         $wordArraylength = count($wordArray);
-        $aux = true;
 
         foreach ($wordArray as $word){
             if ( $count < ($wordArraylength - 1) ){
@@ -139,6 +142,7 @@
             if ( (strstr($word, "vacuna")) || (similar_text($word, "vacuna") >= 4) ){
                 if ($count >= 2){
                     if (($wordArray[$count-1] != "no") &&
+                        ($wordArray[$count-1] != "ni") &&
                         ($wordArray[$count-2] != "no") &&
                         ($wordArray[$count-1] != "sin") &&
                         !(strstr("falta", $wordArray[$count-1])))
@@ -164,9 +168,10 @@
         $wordArray = explode(" ", $lowerTweet);
         $count = 0;
         foreach ($wordArray as $word) {
-            if ( (strstr($word, "castrado")) || (strstr($word, "esteril")) || (strstr($word, "capado")) ) {
+            if ( (strstr($word, "castrado")) || (strstr($word, "castramos")) || (strstr($word, "esteril")) || (strstr($word, "capado")) ) {
                 if ($count >= 2){
                     if (($wordArray[$count-1] != "no") &&
+                        ($wordArray[$count-1] != "ni") &&
                         ($wordArray[$count-2] != "no") &&
                         ($wordArray[$count-1] != "sin") &&
                         !(strstr("falta", $wordArray[$count-1])))
@@ -181,6 +186,12 @@
         return 0;
     }
 
+    /**
+     * Checks if the tweet contains information about a specific race.
+     * @author José Díaz
+     * @param  String $tweet The tweet to check.
+     * @return String with the dogs race, 0 if not found.
+     */
     function extractRace ($tweet){
         $lowerTweet = strtolower($tweet);
         $wordArray = explode(" ", $lowerTweet);
