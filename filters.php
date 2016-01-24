@@ -1,117 +1,137 @@
 <?php
+    /**
+     * Calls all the verify functions in order.
+     * @author José Díaz
+     * @param String $tweet contains the tweet to check.
+     */
+    function verifyAll ($tweet){
+        verifyMail($tweet);
+        verifyTelephone($tweet);
+        verifyAge($tweet);
+        verifyVaccine($tweet);
+        verifyNeutered($tweet);
+    }
 
-$orac='El tweet 0414-8893387 viene de correo@dom.inio.com la mascota tiene 15 años';
+    /**
+     * Checks if a tweet contains an e-mail.
+     * @author Jesús Castro
+     * @param  String $tweet contains the tweet to check.
+     * @return String with an e-mail if it contains one, 0 if it doesn't.
+     */
+    function verifyMail ($tweet){
+        $lowerTweet = strtolower($tweet);
+        $wordArray = explode(" ", $lowerTweet);
 
-echo $orac.'</br></br>';
-
-//Separar el string en palabras
-$array= explode(" ",$orac);
-echo print_r(array_values($array)).'</br>';
-
-//Cantidad de palabras
-$w_count = count($array);
-echo 'Son '.$w_count.' palabras</br></br>';
-
-//Funcion auxiliar para filtrar correo
-function dots_mail($string){
-    $aux=false;
-    
-    if(
-        $string[0]<>'.' &&
-        $string[strlen($string)-1]<>'.'
-    ) {
-        for ($j=1;$j<strlen($string);$j++){
-            if($string[$j]=='.'){
-                if($aux==true){
-                    return false;
-                }
-                $aux=true;
-            } else {
-                $aux=false;
+        foreach ($wordArray as $word){
+            //Verificar si es un correo
+            if (
+                //Hay un solo '@'
+                strpos($word, "@") != false &&
+                strpos(substr($word, strpos($word, "@") + 1), "@") == false &&
+                //Los puntos están ubicados correctamente
+                checkDots( substr($word, strpos($word, "@")+1) )
+            )
+            {
+                echo "Esto es un correo: " . $word . "</br>";
+                return $word;
             }
         }
-        return true;
+        return 0;
     }
-    return false;
-}
 
+    /**
+     * Auxiliary function to check the dots in an e-mail are valid. Used in verifyMail.
+     * @author Jesús Castro
+     */
+    function checkDots ($string){
+        $aux = false;
 
-//Funcion auxiliar para filtrar número telefónico
-function nums_telf($string){
-    
-    if(strlen($string)<7) return false;
-    
-    for ($j=1;$j<strlen($string);$j++){
-        if(
-            ($string[$j]<'0' ||
-            $string[$j]>'9') &&
-            $string[$j]!='-' &&
-            $string[$j]!='+'
-          ){
-            return false;
+        if( $string[0] <> '.' &&
+           $string[strlen($string) - 1] <> '.' ) {
+            for ($j=0; $j < strlen($string); $j++) {
+                if ($string[$j] == '.') {
+                    if ($aux == true) {
+                        return false;
+                    }
+                    $aux = true;
+                } else {
+                    $aux = false;
+                }
+            }
+            return true;
         }
+        return false;
     }
-    return true;
-}
 
-//Funcion auxiliar para filtrar edad
-function nums_age($string){
-    
-    if(strlen($string)<2) return false;
-    
-    for ($j=1;$j<strlen($string);$j++){
-        if(
-            ($string[$j]<'0' ||
-            $string[$j]>'9')
-          ){
-            return false;
+    /**
+     * Checks if a tweet contains a telephone number.
+     * @author Jesús Castro
+     * @param  String $tweet contains the tweet to check.
+     * @return String with a telephone number if it contains one, 0 if it doesn't.
+     */
+    function verifyTelephone ($tweet){
+        $lowerTweet = strtolower($tweet);
+        $wordArray = explode(" ", $lowerTweet);
+
+        foreach ($wordArray as $word){
+            if (strlen($word) >= 7){
+                for ($j=0; $j < strlen($word); $j++){
+                    if ( !( ($word[$j] < '0') || ($word[$j] > '9') ) &&
+                        !($word[$j] != '-') &&
+                        !($word[$j] != '+') ){
+                        echo "Esto es un teléfono: " . $word . "</br>";
+                        return $word;
+                    }
+                }
+            }
         }
+        return 0;
     }
-    return true;
-}
 
+    /**
+     * Checks if a tweet contains an age.
+     * @author Jesús Castro
+     * @param  String $tweet contains the tweet to check.
+     * @return String with the age if it contains one, 0 if it doesn't.
+     */
+    function verifyAge ($tweet){
+        $lowerTweet = strtolower($tweet);
+        $wordArray = explode(" ", $lowerTweet);
+        $count = 0;
+        $wordArraylength = count($wordArray);
+        $aux = true;
 
-for ($i = 0; $i < $w_count ; $i++) {
-    echo $array[$i].' de '.strlen($array[$i]);
-    
-    //Verificar si es un correo
-    if (
-        //Hay un solo '@'
-        strpos($array[$i],"@")!=false &&
-        strpos(substr($array[$i],strpos($array[$i],"@")+1),"@")==false &&
-        //Los puntos están ubicados correctamente
-        dots_mail(substr($array[$i],strpos($array[$i],"@")+1))
-        )
-    {
-        echo " Esto es un correo";
-    }
-    
-    //Verificar si es un telefono
-    if (
-        nums_telf($array[$i])
-        )
-    {
-        echo " Esto es un telefono";
-    }
-    
-    //Verificar si es la edad
-    if (
-        $i< $w_count - 1 &&
-        $array[$i+1] == 'años' &&
-        nums_age($array[$i])
-    )
-    {
-        echo " Esta es la edad";
-    }
-    echo '</br>';
-}
+        foreach ($wordArray as $word){
+            if ( $count < ($wordArraylength - 1) ){
+                if ((strlen($word) <= 2) &&
+                    (strlen($word) > 0) &&
+                    ($wordArray[$count + 1] == "años")
+                   ){
+                    $aux = true;
+                    for ($j=0; $j < strlen($word); $j++){
+                        if (($word[$j] < '0') ||
+                            ($word[$j] > '9')){
+                            $aux = false;;
+                        }
+                    }
 
-    /*
-    *   Function that checks if the tweet contains information about vaccines.
-    +   Input = The tweet to check.
-    *   Returns = True if the animal is vaccinated, False if not.
-    */
-    function extractVaccine ($tweet){
+                    if($aux == true)
+                        echo "Esto es una edad: " . $word . "</br>";
+                        return $word;
+                }
+                $count++;
+            }
+        }
+        return 0;
+    }
+
+    /**
+     * Checks if the tweet contains information about vaccines.
+     * @author José Díaz
+     * @param  String $tweet The tweet to check.
+     * @return 1 if animal is vaccinated, 0 if not.
+     */
+    function verifyVaccine ($tweet){
         $lowerTweet = strtolower($tweet);
         $wordArray = explode(" ", $lowerTweet);
         $count = 0;
@@ -123,6 +143,7 @@ for ($i = 0; $i < $w_count ; $i++) {
                         ($wordArray[$count-1] != "sin") &&
                         !(strstr("falta", $wordArray[$count-1])))
                     {
+                        echo "Sí está vacunado, en la palabra: " . $word . "</br>";
                         return 1;
                     }
                 }
@@ -132,5 +153,59 @@ for ($i = 0; $i < $w_count ; $i++) {
         return 0;
     }
 
+    /**
+     * Checks if the tweet contains information about neutered animals.
+     * @author José Díaz
+     * @param  String $tweet The tweet to check.
+     * @return 1 if animal is neutered, 0 if not.
+     */
+    function verifyNeutered ($tweet){
+        $lowerTweet = strtolower($tweet);
+        $wordArray = explode(" ", $lowerTweet);
+        $count = 0;
+        foreach ($wordArray as $word) {
+            if ( (strstr($word, "castrado")) || (strstr($word, "esteril")) || (strstr($word, "capado")) ) {
+                if ($count >= 2){
+                    if (($wordArray[$count-1] != "no") &&
+                        ($wordArray[$count-2] != "no") &&
+                        ($wordArray[$count-1] != "sin") &&
+                        !(strstr("falta", $wordArray[$count-1])))
+                    {
+                        echo "Sí está castrado, en la palabra: " . $word . "</br>";
+                        return 1;
+                    }
+                }
+            }
+            $count++;
+        }
+        return 0;
+    }
 
+    function extractRace ($tweet){
+        $lowerTweet = strtolower($tweet);
+        $wordArray = explode(" ", $lowerTweet);
+        $count = 0;
+        foreach ($wordArray as $word) {
+
+            $count++;
+        }
+        return 0;
+    }
+
+    /**
+     * Reads a file with a list of dog races, stores it in an array and returns it.
+     * @author José Díaz
+     * @return Array containing a list of dog races, each index contains a single race.
+     */
+    function readRacesFile (){
+        $racesFile = fopen("dog_races.txt", "r") or die("Failed opening dog_races.txt");
+
+        $races = array();
+        while( !feof($racesFile) ) {
+            array_push($races, fgets($racesFile));
+        }
+
+        fclose($racesFile);
+        return $races;
+    }
 ?>

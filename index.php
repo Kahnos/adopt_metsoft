@@ -24,6 +24,10 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <?php
+        include 'filters.php';
+    ?>
+
 </head>
 
 <body>
@@ -62,12 +66,42 @@
 
         <div class="row">
             <div class="col-md-12">
-                
-                
+
+
 <!--
                 Here goes the filters
 -->
-                
+
+
+<?php
+    // TEST FILTERS
+    readRacesFile();
+
+    // Strings de prueba
+    $testTweets = array(
+                        "El tweet 0414-8893387 viene de correo@dom.inio.com la mascota tiene 5 años",
+                        "adopta a este gatito, es cariñoso, vacunado, castrado y esterilizado 04256354765",
+                        "el es danielito es un gato muy amoroso sin vacunas y esta castrado, escribe a lib.corrales.bravo@gma.il.net",
+                        "gato en adopcion kaztrado de 2 años",
+                        "adopta a boby un perrito callegero sacado de las calles lo vacunamos y lo castramos, interesados comunicarse",
+                        "adopta a mimi un gatito callegero de 12 años sacado de las calles lo vacunamos 23123+4+512, interesados comunicarse",
+                        "adopta a este perro, no esta castrado pero si vacunado",
+                        "gato en adopcion sin castracion, llama al 0424-212+35-12",
+                        "algun interesado en adoptar a uno de estos cachorros? estan vacunados, no castrados, adoptalos te daran el amor quer tanto nececitas",
+                        "el gato no esta castrado, contacta a lib.corrales.bravo@gmail.com, llama al 042421235-12",
+                        "el gato si esta esteril",
+                        "el pato no esta capado",
+                        "el rusben si esta capado",
+                        "adopta a este perrito, no tiene ningun tratamiento",
+                        "adoptame, pitbull le falta vacunas y castrarlo"
+                        );
+
+    foreach ($testTweets as $tweet){
+        echo "</br> Tweet: " . $tweet . "</br>";
+        verifyAll($tweet);
+    }
+
+?>
 <!-- PLACEHOLDER FORM -->
 <form class="form-horizontal" action="index.php">
 <fieldset>
@@ -84,19 +118,19 @@
       <input type="checkbox" name="category" id="category-0" value="1">
       Perros
     </label>
-	</div>
+    </div>
   <div class="checkbox">
     <label for="category-1">
       <input type="checkbox" name="category" id="category-1" value="2">
       Gatos
     </label>
-	</div>
+    </div>
   <div class="checkbox">
     <label for="category-2">
       <input type="checkbox" name="category" id="category-2" value="3">
       Otros
     </label>
-	</div>
+    </div>
   </div>
 </div>
 
@@ -107,20 +141,20 @@
     <button id="submitbutton" name="submitbutton" class="btn btn-primary" type="submit" value="ok">Buscar</button>
   </div>
 </div>
-    
+
 
 <!-- Modal box -->
 <div id="openModal" class="modalDialog">
-	<div>
-		<a href="#close" title="Close" class="close">X</a>
-		<h2>Modal Box</h2>
-		<p>This is a sample modal box that can be created using the powers of CSS3.</p>
-		<p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users
+    <div>
+        <a href="#close" title="Close" class="close">X</a>
+        <h2>Modal Box</h2>
+        <p>This is a sample modal box that can be created using the powers of CSS3.</p>
+        <p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users
         </p>
-	</div>
+    </div>
 </div>
 <!-- API Logic -->
-<?php                
+<?php
 
 require_once('adopt_functions.php');
 
@@ -130,16 +164,16 @@ $settings = set_twt_api();
 
 $url = 'https://api.twitter.com/1.1/search/tweets.json';
 $getfield = '?q=mascota OR perro OR gato OR adopcion OR
-            adoptar OR adopta adopta OR adopcion OR adoptar 
-            -mono -"amigos por siempre" -ganadores since:2016-01-01 
-            geocode:10.5000,-66.9667,450000km -venta -donar -donacion 
+            adoptar OR adopta adopta OR adopcion OR adoptar
+            -mono -"amigos por siempre" -ganadores since:2016-01-01
+            geocode:10.5000,-66.9667,450000km -venta -donar -donacion
             -compra -niño -unete -niña -bebe -"no compres" -jornada -asiste';
 
 //Validar que ya se haya cargado una vez el formulario
 if (isset($_GET['submitbutton']))
 {
-    if($_GET['category']=='1') $getfield = '?q=adopcion+perro&count=20';
-    if($_GET['category']=='2') $getfield = '?q=adopcion+gato&count=20';
+    if($_GET['category']=='1') $getfield = '?q=adopcion+perro&count=40';
+    if($_GET['category']=='2') $getfield = '?q=adopcion+gato&count=40';
     if($_GET['category']=='3') $getfield = '?q=miss+colombia&count=20';
 }
 
@@ -156,7 +190,7 @@ $counter = 0;
 
 ?>
 
-    
+
 </fieldset>
 </form>
 
@@ -182,7 +216,7 @@ $counter = 0;
                 }
             ?>
     </div>
-    
+
     <!-- /.container -->
 
     <div class="container">

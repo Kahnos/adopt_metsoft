@@ -1,0 +1,46 @@
+Golden Retriever
+Yorkshire Terrier
+Fox Terrier
+Bull Terrier
+Mastin Napolitano
+Lahsa Apso
+Akita Inu
+Lulu Pomerania
+Bichon Maltes
+Border Collie
+Shar Pei
+Gran Danes
+Labrador
+Pastor
+Beagle
+Malamute
+Bernardo
+Boxer
+Rottweiler
+Samoyedo
+Chow
+PitBull
+Dalmata
+Collie
+Bulldog
+Doberman
+Carlino
+Cocker
+Husky
+Schnauzer
+Chihuahua
+Basset
+Terranova
+Westie
+Caniche
+Corgi
+Pinscher
+Pekines
+Agua
+Setter
+Galgo
+Teckel
+Bloodhound
+Bobtail
+Lebrel
+Basenji
