@@ -73,10 +73,10 @@
     function verifyTelephone ($tweet){
         $lowerTweet = strtolower($tweet);
         $wordArray = explode(" ", $lowerTweet);
+        $wordArray = array_map('trimArray', $wordArray);    // Applies trimArray() to all the strings in the array.
 
         foreach ($wordArray as $word){
             if (strlen($word) >= 7){
-                $word = trim($word, '.,');
                 $aux = true;
                 for ($j=0; $j < strlen($word); $j++){
                     if ( ( ($word[$j] < '0') || ($word[$j] > '9') ) &&
@@ -103,15 +103,15 @@
     function verifyAge ($tweet){
         $lowerTweet = strtolower($tweet);
         $wordArray = explode(" ", $lowerTweet);
+        $wordArray = array_map('trimArray', $wordArray);    // Applies trimArray() to all the strings in the array.
         $count = 0;
         $wordArraylength = count($wordArray);
 
         foreach ($wordArray as $word){
             if ( $count < ($wordArraylength - 1) ){
-                $word = trim($word, '.,');
                 if ((strlen($word) <= 2) &&
                     (strlen($word) > 0) &&
-                    (strstr($wordArray[$count + 1], "años"))
+                    ((strstr($wordArray[$count + 1], "año")) || (strstr($wordArray[$count + 1], "mes")))
                    ){
                     $aux = true;
                     for ($j=0; $j < strlen($word); $j++){
@@ -122,8 +122,8 @@
                     }
 
                     if($aux == true)
-                        echo "Esto es una edad: " . $word . "</br>";
-                        return $word;
+                        echo "Esto es una edad: " . $word . " " . $wordArray[$count + 1] . "</br>";
+                        return $word . " " . $wordArray[$count + 1];
                 }
                 $count++;
             }
@@ -140,9 +140,9 @@
     function verifyVaccine ($tweet){
         $lowerTweet = strtolower($tweet);
         $wordArray = explode(" ", $lowerTweet);
+        $wordArray = array_map('trimArray', $wordArray);    // Applies trimArray() to all the strings in the array.
         $count = 0;
         foreach ($wordArray as $word) {
-            $word = trim($word, '.,');
             if ( (strstr($word, "vacuna")) || (similar_text($word, "vacuna") >= 5) ){
                 if ($count >= 2){
                     if (($wordArray[$count-1] != "no") &&
@@ -170,9 +170,9 @@
     function verifyNeutered ($tweet){
         $lowerTweet = strtolower($tweet);
         $wordArray = explode(" ", $lowerTweet);
+        $wordArray = array_map('trimArray', $wordArray);    // Applies trimArray() to all the strings in the array.
         $count = 0;
         foreach ($wordArray as $word) {
-            $word = trim($word, '.,');
             if ( (strstr($word, "castrado")) || (similar_text($word, "castrado") >= 6) || (strstr($word, "esteril")) || (strstr($word, "capado")) ) {
                 if ($count >= 2){
                     if (($wordArray[$count-1] != "no") &&

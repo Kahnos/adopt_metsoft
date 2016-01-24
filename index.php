@@ -80,19 +80,19 @@
     $testTweets = array(
                         "El tweet 0414-8893387 viene de correo@dom.inio.com la mascota tiene 5 años",
                         "adopta a este gatito un pequeño terranoba, es cariñoso, vacunado, castrado y esterilizado 04256354765, ahora",
-                        "el es danielito es un perro muy amoroso sin vacunas y esta castrado Shar Pei, escribe a lib.corrales.bravo@gma.il.net",
-                        "gato en adopcion kaztrado de 2 años",
-                        "adopta a boby un perrito pitbull callegero sacado de las calles lo vacunamos y lo castramos, interesados comunicarse",
+                        "el es danielito es un perro  de 1 año muy amoroso sin vacunas y esta castrado Shar Pei, escribe a lib.corrales.bravo@gma.il.net",
+                        "gato en adopcion kaztrado de 2 meses",
+                        "adopta a boby un perrito pitbull de 35 años callegero sacado de las calles lo vacunamos y lo castramos, interesados comunicarse",
                         "adopta a mimi un gatito callegero de 12 años, sacado de las calles lo vacunamos 23123+4+512, interesados comunicarse",
-                        "adopta a este perro, no esta castrado pero si vacunado, raza bull terrier",
+                        "adopta a este perro tiene 1 mes, no esta castrado pero si vacunado, raza bull terrier",
                         "gato en adopcion sin castracion, llama al ,0424-212+35-12.",
                         "algun interesado en adoptar a uno de estos cachorros chow chow? estan vacunados, no castrados, adoptalos te daran el amor quer tanto nececitas",
                         "el perro no esta castrado, contacta a lib.corrales.bravo@gmail.com, llama al 042421235-12, cocker sumiso",
                         "el gato si esta esteril es un pudel hermoso",
-                        "el perro no esta capado, gran danes",
+                        "el perro no esta capado, gran danes, 1 mes",
                         "el rusben si esta capado, adopta a este Agua",
                         "adopta a este perrito chiguagua, no tiene ningun tratamiento",
-                        "adoptame, pitbull le falta vacunas y castrarlo"
+                        "adoptame, pitbull le falta vacunas y castrarlo de 3 meses"
                         );
 
     foreach ($testTweets as $tweet){
