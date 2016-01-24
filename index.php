@@ -56,69 +56,85 @@
         </div>
         <!-- /.container -->
     </nav>
+    
+    
+    
+    
+    <!-- Modal box -->
+    <div id="openModal" class="modalDialog">
+        <div id="modalInside" class="container">
+            <img src="https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG" class="modal_picture">
+            <a href="#close" title="Close" class="close">X</a>
+            <div class="row test_2">
+                <div class="col-xs-12 test_4">
+                    <div class="test_1">
+                        <div class="test">Prueba</div>
+                        <div class="test">Prueba</div>
+                        <div class="test">Prueba</div>
+                        <div class="test">Prueba</div>
+                        <p>This is a sample modal box that can be created using the powers of CSS3.</p>
+                        <p>This is a sample modal box that can be created using the powers of CSS3.</p>
+                        <p>This is a sample modal box that can be created using the powers of CSS3.</p>
+                        <a href="#">This is a sample modal box that can be created using the powers of CSS3.</a>
+                    </div>
+                </div>
+            </div>
+            <div class="test_3">Aqui van los botones</div>
+        </div>
+    </div>
 
+    
+    
+    
+    
     <!-- Page Content -->
     <div class="container">
 
         <div class="row">
             <div class="col-md-12">
                 
-                
-<!--
-                Here goes the filters
--->
-                
 <!-- PLACEHOLDER FORM -->
-<form class="form-horizontal" action="index.php">
-<fieldset>
+                <form class="form-horizontal" action="index.php">
+                    <fieldset>
 
 <!-- Form Name -->
-<legend>Filtros</legend>
+                    <legend>Filtros</legend>
 
-<!-- Multiple Checkboxes -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="category">Filtros_beta</label>
-  <div class="col-md-4">
-  <div class="checkbox">
-    <label for="category-0">
-      <input type="checkbox" name="category" id="category-0" value="1">
-      Perros
-    </label>
-	</div>
-  <div class="checkbox">
-    <label for="category-1">
-      <input type="checkbox" name="category" id="category-1" value="2">
-      Gatos
-    </label>
-	</div>
-  <div class="checkbox">
-    <label for="category-2">
-      <input type="checkbox" name="category" id="category-2" value="3">
-      Otros
-    </label>
-	</div>
-  </div>
-</div>
+                    <!-- Multiple Checkboxes -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="category">Filtros_beta</label>
+                      <div class="col-md-4">
+                      <div class="checkbox">
+                        <label for="category-0">
+                          <input type="checkbox" name="category" id="category-0" value="1">
+                          Perros
+                        </label>
+                        </div>
+                      <div class="checkbox">
+                        <label for="category-1">
+                          <input type="checkbox" name="category" id="category-1" value="2">
+                          Gatos
+                        </label>
+                        </div>
+                      <div class="checkbox">
+                        <label for="category-2">
+                          <input type="checkbox" name="category" id="category-2" value="3">
+                          Otros
+                        </label>
+                        </div>
+                      </div>
+                    </div>
 
 <!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="submitbutton"></label>
-  <div class="col-md-4">
-    <button id="submitbutton" name="submitbutton" class="btn btn-primary" type="submit" value="ok">Buscar</button>
-  </div>
-</div>
-    
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="submitbutton"></label>
+                        <div class="col-md-4">
+                            <button id="submitbutton" name="submitbutton" class="btn btn-primary" type="submit" value="ok">
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
 
-<!-- Modal box -->
-<div id="openModal" class="modalDialog">
-	<div>
-		<a href="#close" title="Close" class="close">X</a>
-		<h2>Modal Box</h2>
-		<p>This is a sample modal box that can be created using the powers of CSS3.</p>
-		<p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users
-        </p>
-	</div>
-</div>
 <!-- API Logic -->
 <?php                
 
@@ -138,7 +154,7 @@ $getfield = '?q=mascota OR perro OR gato OR adopcion OR
 //Validar que ya se haya cargado una vez el formulario
 if (isset($_GET['submitbutton']))
 {
-    if($_GET['category']=='1') $getfield = '?q=adopcion+perro&count=20';
+    if($_GET['category']=='1') $getfield = '?q=adopcion+perro&count=40';
     if($_GET['category']=='2') $getfield = '?q=adopcion+gato&count=20';
     if($_GET['category']=='3') $getfield = '?q=miss+colombia&count=20';
 }
@@ -156,17 +172,16 @@ $counter = 0;
 
 ?>
 
-    
-</fieldset>
-</form>
-
+                    
+                    </fieldset>
+                </form>
             </div>
         </div>
         <div class="row">
             <?php
             foreach($tweets['statuses'] as $tweet){
                 if (isset($tweet['entities']['media'])){ ?>
-                        <div class="col-xs-6 col-sm-4 col-md-3">
+                        <div class="col-xs-12 col-sm-4 col-md-3">
                             <div class="thumbnail">
                                 <div class='image'>
                                     <img src='<?= $tweet['entities']['media'][0]['media_url']?>' class='img img-responsive full-width'>";
@@ -181,6 +196,7 @@ $counter = 0;
                     }
                 }
             ?>
+    </div>
     </div>
     
     <!-- /.container -->

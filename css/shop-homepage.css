@@ -22,7 +22,7 @@ body {
 }
 
 .caption {
-    height: 130px;
+    height: 150px;
     overflow: hidden;
 }
 
@@ -31,10 +31,11 @@ body {
 }
 
 .thumbnail img {
-    height: 300px;
+    height: 100%;
     width: 100%;
     object-fit: cover;
 }
+
 
 .ratings {
     padding-right: 10px;
@@ -62,20 +63,73 @@ footer {
 }
 .image img{
     position:absolute;
+    object-fit: cover;
 }
 
 /* -- Modal section --*/
+.modal_picture {
+    height: 90px;
+    width: 90px;
+    position: absolute;
+    top: 15px; left: 0; right: 0;
+    margin: 0 auto;
+}
+
+.test_3 {
+    height: 90px;
+    background-color: crimson;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.test {
+    height: 20%;
+}
+.test_4 {
+    height: 100%;
+    width: 100%;
+}
+
+
+.test_1 {
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+    margin-top:10px;
+    margin-bottom:120px;
+    margin-right:0px;
+    margin-left:0px;
+    position: absolute;
+    height: auto;
+    background-color: cornflowerblue;
+    overflow-y: scroll;
+}
+
+.test_2 {
+    height: 100%;
+    width: 100%;
+    margin: 60px 0;
+    padding: 45px 0 45px 0;
+    background-color: aqua;
+    overflow: hidden;
+}
 .modalDialog {
 	position: fixed;
 	font-family: Arial, Helvetica, sans-serif;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
+	top: 0;right: 0;bottom: 0;left: 0;
 	background: rgba(0,0,0,0.8);
 	z-index: 99999;
 	opacity:0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center; 
 	pointer-events: none;
+    -webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
 }
 
 .modalDialog:target {
@@ -86,16 +140,15 @@ footer {
 	transition: opacity 400ms ease-in;
 }
 
-.modalDialog > div {
-	width: 400px;
+.modalDialog #modalInside {
+	width: 80%;
+    height: 80%;
 	position: relative;
-	margin: 10% auto;
-	padding: 5px 20px 13px 20px;
+	margin: auto;
+	padding: 0px;
 	border-radius: 10px;
 	background: #fff;
-	background: -moz-linear-gradient(#fff, #999);
-	background: -webkit-linear-gradient(#fff, #999);
-	background: -o-linear-gradient(#fff, #999);
+    overflow: hidden;
 }
 
 .close {
@@ -103,7 +156,7 @@ footer {
 	color: #FFFFFF;
 	line-height: 25px;
 	position: absolute;
-	right: -12px;
+	right: -10px;
 	text-align: center;
 	top: -10px;
 	width: 24px;
@@ -112,9 +165,11 @@ footer {
 	-webkit-border-radius: 12px;
 	-moz-border-radius: 12px;
 	border-radius: 12px;
-	-moz-box-shadow: 1px 1px 3px #000;
+	/*
+    -moz-box-shadow: 1px 1px 3px #000;
 	-webkit-box-shadow: 1px 1px 3px #000;
 	box-shadow: 1px 1px 3px #000;
+    */
 }
 
 .close:hover { background: #00d9ff; }
