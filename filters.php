@@ -1,9 +1,9 @@
 <?php
     /**
-     * Calls all the verify functions in order.
-     * @author José Díaz
-     * @param String $tweet contains the tweet to check.
-     */
+         * Calls all the verify functions in order.
+         * @author José Díaz
+         * @param String $tweet contains the tweet to check.
+         */
     function verifyAll ($tweet){
         verifyMail($tweet);
         verifyTelephone($tweet);
@@ -14,11 +14,11 @@
     }
 
     /**
-     * Checks if a tweet contains an e-mail.
-     * @author Jesús Castro
-     * @param  String $tweet contains the tweet to check.
-     * @return String with an e-mail if it contains one, 0 if it doesn't.
-     */
+         * Checks if a tweet contains an e-mail.
+         * @author Jesús Castro
+         * @param  String $tweet contains the tweet to check.
+         * @return String with an e-mail if it contains one, 0 if it doesn't.
+         */
     function verifyMail ($tweet){
         $lowerTweet = strtolower($tweet);
         $wordArray = explode(" ", $lowerTweet);
@@ -41,9 +41,9 @@
     }
 
     /**
-     * Auxiliary function to check the dots in an e-mail are valid. Used in verifyMail.
-     * @author Jesús Castro
-     */
+         * Auxiliary function to check the dots in an e-mail are valid. Used in verifyMail.
+         * @author Jesús Castro
+         */
     function checkDots ($string){
         $aux = false;
 
@@ -65,11 +65,11 @@
     }
 
     /**
-     * Checks if a tweet contains a telephone number.
-     * @author Jesús Castro
-     * @param  String $tweet contains the tweet to check.
-     * @return String with a telephone number if it contains one, 0 if it doesn't.
-     */
+         * Checks if a tweet contains a telephone number.
+         * @author Jesús Castro
+         * @param  String $tweet contains the tweet to check.
+         * @return String with a telephone number if it contains one, 0 if it doesn't.
+         */
     function verifyTelephone ($tweet){
         $lowerTweet = strtolower($tweet);
         $wordArray = explode(" ", $lowerTweet);
@@ -95,11 +95,11 @@
     }
 
     /**
-     * Checks if a tweet contains an age.
-     * @author Jesús Castro
-     * @param  String $tweet contains the tweet to check.
-     * @return String with the age if it contains one, 0 if it doesn't.
-     */
+         * Checks if a tweet contains an age.
+         * @author Jesús Castro
+         * @param  String $tweet contains the tweet to check.
+         * @return String with the age if it contains one, 0 if it doesn't.
+         */
     function verifyAge ($tweet){
         $lowerTweet = strtolower($tweet);
         $wordArray = explode(" ", $lowerTweet);
@@ -132,11 +132,11 @@
     }
 
     /**
-     * Checks if the tweet contains information about vaccines.
-     * @author José Díaz
-     * @param  String $tweet The tweet to check.
-     * @return 1 if animal is vaccinated, 0 if not.
-     */
+         * Checks if the tweet contains information about vaccines.
+         * @author José Díaz
+         * @param  String $tweet The tweet to check.
+         * @return 1 if animal is vaccinated, 0 if not.
+         */
     function verifyVaccine ($tweet){
         $lowerTweet = strtolower($tweet);
         $wordArray = explode(" ", $lowerTweet);
@@ -162,11 +162,11 @@
     }
 
     /**
-     * Checks if the tweet contains information about neutered animals.
-     * @author José Díaz
-     * @param  String $tweet The tweet to check.
-     * @return 1 if animal is neutered, 0 if not.
-     */
+         * Checks if the tweet contains information about neutered animals.
+         * @author José Díaz
+         * @param  String $tweet The tweet to check.
+         * @return 1 if animal is neutered, 0 if not.
+         */
     function verifyNeutered ($tweet){
         $lowerTweet = strtolower($tweet);
         $wordArray = explode(" ", $lowerTweet);
@@ -192,11 +192,11 @@
     }
 
     /**
-     * Checks if the tweet contains information about a specific race.
-     * @author José Díaz
-     * @param  String $tweet The tweet to check.
-     * @return String with the dogs race, 0 if not found.
-     */
+         * Checks if the tweet contains information about a specific race.
+         * @author José Díaz
+         * @param  String $tweet The tweet to check.
+         * @return String with the dogs race, 0 if not found.
+         */
     function verifyRace ($tweet){
         $lowerTweet = strtolower($tweet);
         $wordArray = explode(" ", $lowerTweet);
@@ -208,71 +208,73 @@
         foreach ($wordArray as $word) {
             $count2 = 1;
 
-            foreach ($races as $race){
-                if ( ($count2 <= 12) && ($count < ($wordArraylength - 1)) ){
-                    $raceAuxArray = explode(" ", $race);
-                    $raceLength1 = strlen($raceAuxArray[0]);
-                    $raceLength2 = strlen($raceAuxArray[1]);
-                    $percent = 0;
+            if (!strstr($word, "http")){
+                foreach ($races as $race){
+                    if ( ($count2 <= 12) && ($count < ($wordArraylength - 1)) ){
+                        $raceAuxArray = explode(" ", $race);
+                        $raceLength1 = strlen($raceAuxArray[0]);
+                        $raceLength2 = strlen($raceAuxArray[1]);
+                        $percent = 0;
 
-                    if ($raceLength1 <= 4){
-                        if ( (similar_text($word, $raceAuxArray[0]) >= 3) ){    // Checks similarity in the first word of the race.
-                            if ($raceLength2 <= 4){
-                                if (similar_text($wordArray[$count + 1], $raceAuxArray[1]) >= 3){   // Checks similarity in the second word of the race.
-                                    // echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
-                                    return $race;
+                        if ($raceLength1 <= 4){
+                            if ( (similar_text($word, $raceAuxArray[0]) >= 3) ){    // Checks similarity in the first word of the race.
+                                if ($raceLength2 <= 4){
+                                    if (similar_text($wordArray[$count + 1], $raceAuxArray[1]) >= 3){   // Checks similarity in the second word of the race.
+                                        // echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
+                                        return $race;
+                                    }
+                                }
+                                else{
+                                    similar_text($wordArray[$count + 1], $raceAuxArray[1], $percent);   // Stores in $percent the percentage of similarity between the word and the second word of the race.
+
+                                    if ( $percent >= 80 ){    // Checks similarity in the second word of the race is at least of 80%.
+                                        // echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
+                                        return $race;
+                                    }
                                 }
                             }
-                            else{
-                                similar_text($wordArray[$count + 1], $raceAuxArray[1], $percent);   // Stores in $percent the percentage of similarity between the word and the second word of the race.
+                        }
+                        else{
+                            similar_text($word, $raceAuxArray[0], $percent);    // Stores in $percent the percentage of similarity between the word and the first word of the race.
 
-                                if ( $percent >= 70 ){    // Checks similarity in the second word of the race is at least of 70%.
-                                    // echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
-                                    return $race;
+                            if ( $percent >= 80 ){    // Checks similarity in the first word of the race is at least of 80%.
+                                if ($raceLength2 <= 4){
+                                    if (similar_text($wordArray[$count + 1], $raceAuxArray[1]) >= 3){   // Checks similarity in the second word of the race.
+                                        // echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
+                                        return $race;
+                                    }
+                                }
+                                else{
+                                    similar_text($wordArray[$count + 1], $raceAuxArray[1], $percent);   // Stores in $percent the percentage of similarity between the word and the second word of the race.
+
+                                    if ( $percent >= 80 ){    // Checks similarity in the second word of the race is at least of 80%.
+                                        // echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
+                                        return $race;
+                                    }
                                 }
                             }
                         }
                     }
-                    else{
-                        similar_text($word, $raceAuxArray[0], $percent);    // Stores in $percent the percentage of similarity between the word and the first word of the race.
+                    elseif ($count2 > 12){
+                        $raceLength = strlen($race);
 
-                        if ( $percent >= 70 ){    // Checks similarity in the first word of the race is at least of 70%.
-                            if ($raceLength2 <= 4){
-                                if (similar_text($wordArray[$count + 1], $raceAuxArray[1]) >= 3){   // Checks similarity in the second word of the race.
-                                    // echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
-                                    return $race;
-                                }
+                        if ($raceLength <= 4){
+                            if (similar_text($word, $race) >= 3){   //  Checks similarity between the word and the race.
+                                // echo "La raza es: " . $race . " en la palabra " . $word . "</br>";
+                                return $race;
                             }
-                            else{
-                                similar_text($wordArray[$count + 1], $raceAuxArray[1], $percent);   // Stores in $percent the percentage of similarity between the word and the second word of the race.
+                        }
+                        else{
+                            similar_text($word, $race, $percent);    // Stores in $percent the percentage of similarity between the word and race.
 
-                                if ( $percent >= 70 ){    // Checks similarity in the second word of the race is at least of 70%.
-                                    // echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
-                                    return $race;
-                                }
+                            if ( $percent >= 80 ){    //  Checks similarity between the word and the race is at least of 80%.
+                                // echo "La raza es: " . $race . " en la palabra " . $word . "</br>";
+                                return $race;
                             }
                         }
                     }
+                    $count2++;
                 }
-                elseif ($count2 > 12){
-                    $raceLength = strlen($race);
-
-                    if ($raceLength <= 4){
-                        if (similar_text($word, $race) >= 3){   //  Checks similarity between the word and the race.
-                            // echo "La raza es: " . $race . " en la palabra " . $word . "</br>";
-                            return $race;
-                        }
-                    }
-                    else{
-                        similar_text($word, $race, $percent);    // Stores in $percent the percentage of similarity between the word and race.
-
-                        if ( $percent >= 70 ){    //  Checks similarity between the word and the race is at least of 70%.
-                            // echo "La raza es: " . $race . " en la palabra " . $word . "</br>";
-                            return $race;
-                        }
-                    }
-                }
-                $count2++;
             }
             $count++;
         }
@@ -280,19 +282,19 @@
     }
 
     /**
-     * Auxialiary function that trims the received string and removes ',' and '.'
-     * @author José Díaz
-     * @param String $arrayString The string to trim
-     */
+         * Auxialiary function that trims the received string and removes ',' and '.'
+         * @author José Díaz
+         * @param String $arrayString The string to trim
+         */
     function trimArray($arrayString){
         return trim($arrayString, '.,');
     }
 
     /**
-     * Reads a file (called dog_races.txt at root folder) with a list of dog races, stores it in an array and returns it.
-     * @author José Díaz
-     * @return Array containing a list of dog races, each index contains a single race.
-     */
+         * Reads a file (called dog_races.txt at root folder) with a list of dog races, stores it in an array and returns it.
+         * @author José Díaz
+         * @return Array containing a list of dog races, each index contains a single race.
+         */
     function readRacesFile (){
         $racesFile = fopen("dog_races.txt", "r") or die("Failed opening dog_races.txt");
 
