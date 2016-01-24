@@ -31,12 +31,10 @@ Schnauzer
 Chihuahua
 Basset
 Terranova
-Westie
 Caniche
 Corgi
 Pinscher
 Pekines
-Agua
 Setter
 Galgo
 Teckel
@@ -44,3 +42,4 @@ Bloodhound
 Bobtail
 Lebrel
 Basenji
+Poodle

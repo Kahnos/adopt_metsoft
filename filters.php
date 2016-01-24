@@ -10,6 +10,7 @@
         verifyAge($tweet);
         verifyVaccine($tweet);
         verifyNeutered($tweet);
+        verifyRace($tweet);
     }
 
     /**
@@ -141,7 +142,8 @@
         $wordArray = explode(" ", $lowerTweet);
         $count = 0;
         foreach ($wordArray as $word) {
-            if ( (strstr($word, "vacuna")) || (similar_text($word, "vacuna") >= 4) ){
+            $word = trim($word, '.,');
+            if ( (strstr($word, "vacuna")) || (similar_text($word, "vacuna") >= 5) ){
                 if ($count >= 2){
                     if (($wordArray[$count-1] != "no") &&
                         ($wordArray[$count-1] != "ni") &&
@@ -170,7 +172,8 @@
         $wordArray = explode(" ", $lowerTweet);
         $count = 0;
         foreach ($wordArray as $word) {
-            if ( (strstr($word, "castrado")) || (strstr($word, "castramos")) || (strstr($word, "esteril")) || (strstr($word, "capado")) ) {
+            $word = trim($word, '.,');
+            if ( (strstr($word, "castrado")) || (similar_text($word, "castrado") >= 6) || (strstr($word, "esteril")) || (strstr($word, "capado")) ) {
                 if ($count >= 2){
                     if (($wordArray[$count-1] != "no") &&
                         ($wordArray[$count-1] != "ni") &&
@@ -194,19 +197,99 @@
      * @param  String $tweet The tweet to check.
      * @return String with the dogs race, 0 if not found.
      */
-    function extractRace ($tweet){
+    function verifyRace ($tweet){
         $lowerTweet = strtolower($tweet);
         $wordArray = explode(" ", $lowerTweet);
+        $wordArray = array_map('trimArray', $wordArray);    // Applies trimArray() to all the strings in the array.
+        $wordArraylength = count($wordArray);
         $count = 0;
-        foreach ($wordArray as $word) {
+        $races = readRacesFile();
 
+        foreach ($wordArray as $word) {
+            $count2 = 1;
+
+            foreach ($races as $race){
+                if ( ($count2 <= 12) && ($count < ($wordArraylength - 1)) ){
+                    $raceAuxArray = explode(" ", $race);
+                    $raceLength1 = strlen($raceAuxArray[0]);
+                    $raceLength2 = strlen($raceAuxArray[1]);
+                    $percent = 0;
+
+                    if ($raceLength1 <= 4){
+                        if ( (similar_text($word, $raceAuxArray[0]) >= 3) ){    // Checks similarity in the first word of the race.
+                            if ($raceLength2 <= 4){
+                                if (similar_text($wordArray[$count + 1], $raceAuxArray[1]) >= 3){   // Checks similarity in the second word of the race.
+                                    echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
+                                    return $race;
+                                }
+                            }
+                            else{
+                                similar_text($wordArray[$count + 1], $raceAuxArray[1], $percent);   // Stores in $percent the percentage of similarity between the word and the second word of the race.
+
+                                if ( $percent >= 70 ){    // Checks similarity in the second word of the race is at least of 70%.
+                                    echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
+                                    return $race;
+                                }
+                            }
+                        }
+                    }
+                    else{
+                        similar_text($word, $raceAuxArray[0], $percent);    // Stores in $percent the percentage of similarity between the word and the first word of the race.
+
+                        if ( $percent >= 70 ){    // Checks similarity in the first word of the race is at least of 70%.
+                            if ($raceLength2 <= 4){
+                                if (similar_text($wordArray[$count + 1], $raceAuxArray[1]) >= 3){   // Checks similarity in the second word of the race.
+                                    echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
+                                    return $race;
+                                }
+                            }
+                            else{
+                                similar_text($wordArray[$count + 1], $raceAuxArray[1], $percent);   // Stores in $percent the percentage of similarity between the word and the second word of the race.
+
+                                if ( $percent >= 70 ){    // Checks similarity in the second word of the race is at least of 70%.
+                                    echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
+                                    return $race;
+                                }
+                            }
+                        }
+                    }
+                }
+                elseif ($count2 > 12){
+                    $raceLength = strlen($race);
+
+                    if ($raceLength <= 4){
+                        if (similar_text($word, $race) >= 3){   //  Checks similarity between the word and the race.
+                            echo "La raza es: " . $race . " en la palabra " . $word . "</br>";
+                            return $race;
+                        }
+                    }
+                    else{
+                        similar_text($word, $race, $percent);    // Stores in $percent the percentage of similarity between the word and race.
+
+                        if ( $percent >= 70 ){    //  Checks similarity between the word and the race is at least of 70%.
+                            echo "La raza es: " . $race . " en la palabra " . $word . "</br>";
+                            return $race;
+                        }
+                    }
+                }
+                $count2++;
+            }
             $count++;
         }
         return 0;
     }
 
     /**
-     * Reads a file with a list of dog races, stores it in an array and returns it.
+     * Auxialiary function that trims the received string and removes ',' and '.'
+     * @author José Díaz
+     * @param String $arrayString The string to trim
+     */
+    function trimArray($arrayString){
+        return trim($arrayString, '.,');
+    }
+
+    /**
+     * Reads a file (called dog_races.txt at root folder) with a list of dog races, stores it in an array and returns it.
      * @author José Díaz
      * @return Array containing a list of dog races, each index contains a single race.
      */
@@ -215,7 +298,7 @@
 
         $races = array();
         while( !feof($racesFile) ) {
-            array_push($races, fgets($racesFile));
+            array_push($races, strtolower(trim(fgets($racesFile))));
         }
 
         fclose($racesFile);
