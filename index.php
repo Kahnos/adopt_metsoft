@@ -65,8 +65,7 @@
         <div id="modalInside" class="container">
             <img src="https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG" class="modal_picture">
             <a href="#close" title="Close" class="close">X</a>
-            <div class="row test_2">
-                <div class="col-xs-12 test_4">
+                <div class="col-xs-12 test_2">
                     <div class="test_1">
                         <div class="test">Prueba</div>
                         <div class="test">Prueba</div>
@@ -77,11 +76,12 @@
                         <p>This is a sample modal box that can be created using the powers of CSS3.</p>
                         <a href="#">This is a sample modal box that can be created using the powers of CSS3.</a>
                     </div>
+                    <div class="test_3">
+                        <a class="but">Botón</a>
+                    </div>
                 </div>
             </div>
-            <div class="test_3">Aqui van los botones</div>
         </div>
-    </div>
 
     
     
