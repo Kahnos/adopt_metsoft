@@ -33,7 +33,7 @@
                 checkDots( substr($word, strpos($word, "@")+1) )
             )
             {
-                echo "Esto es un correo: " . $word . "</br>";
+                // echo "Esto es un correo: " . $word . "</br>";
                 return $word;
             }
         }
@@ -86,7 +86,7 @@
                     }
                 }
                 if($aux == true){
-                    echo "Esto es un teléfono: " . $word . "</br>";
+                    // echo "Esto es un teléfono: " . $word . "</br>";
                     return $word;
                 }
             }
@@ -122,7 +122,7 @@
                     }
 
                     if($aux == true)
-                        echo "Esto es una edad: " . $word . " " . $wordArray[$count + 1] . "</br>";
+                        // echo "Esto es una edad: " . $word . " " . $wordArray[$count + 1] . "</br>";
                         return $word . " " . $wordArray[$count + 1];
                 }
                 $count++;
@@ -151,7 +151,7 @@
                         ($wordArray[$count-1] != "sin") &&
                         !(strstr("falta", $wordArray[$count-1])))
                     {
-                        echo "Sí está vacunado, en la palabra: " . $word . "</br>";
+                        // echo "Sí está vacunado, en la palabra: " . $word . "</br>";
                         return 1;
                     }
                 }
@@ -181,7 +181,7 @@
                         ($wordArray[$count-1] != "sin") &&
                         !(strstr("falta", $wordArray[$count-1])))
                     {
-                        echo "Sí está castrado, en la palabra: " . $word . "</br>";
+                        // echo "Sí está castrado, en la palabra: " . $word . "</br>";
                         return 1;
                     }
                 }
@@ -219,7 +219,7 @@
                         if ( (similar_text($word, $raceAuxArray[0]) >= 3) ){    // Checks similarity in the first word of the race.
                             if ($raceLength2 <= 4){
                                 if (similar_text($wordArray[$count + 1], $raceAuxArray[1]) >= 3){   // Checks similarity in the second word of the race.
-                                    echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
+                                    // echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
                                     return $race;
                                 }
                             }
@@ -227,7 +227,7 @@
                                 similar_text($wordArray[$count + 1], $raceAuxArray[1], $percent);   // Stores in $percent the percentage of similarity between the word and the second word of the race.
 
                                 if ( $percent >= 70 ){    // Checks similarity in the second word of the race is at least of 70%.
-                                    echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
+                                    // echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
                                     return $race;
                                 }
                             }
@@ -239,7 +239,7 @@
                         if ( $percent >= 70 ){    // Checks similarity in the first word of the race is at least of 70%.
                             if ($raceLength2 <= 4){
                                 if (similar_text($wordArray[$count + 1], $raceAuxArray[1]) >= 3){   // Checks similarity in the second word of the race.
-                                    echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
+                                    // echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
                                     return $race;
                                 }
                             }
@@ -247,7 +247,7 @@
                                 similar_text($wordArray[$count + 1], $raceAuxArray[1], $percent);   // Stores in $percent the percentage of similarity between the word and the second word of the race.
 
                                 if ( $percent >= 70 ){    // Checks similarity in the second word of the race is at least of 70%.
-                                    echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
+                                    // echo "La raza es: " . $race . " en la palabra " . $word . " " . $wordArray[$count + 1] . "</br>";
                                     return $race;
                                 }
                             }
@@ -259,7 +259,7 @@
 
                     if ($raceLength <= 4){
                         if (similar_text($word, $race) >= 3){   //  Checks similarity between the word and the race.
-                            echo "La raza es: " . $race . " en la palabra " . $word . "</br>";
+                            // echo "La raza es: " . $race . " en la palabra " . $word . "</br>";
                             return $race;
                         }
                     }
@@ -267,7 +267,7 @@
                         similar_text($word, $race, $percent);    // Stores in $percent the percentage of similarity between the word and race.
 
                         if ( $percent >= 70 ){    //  Checks similarity between the word and the race is at least of 70%.
-                            echo "La raza es: " . $race . " en la palabra " . $word . "</br>";
+                            // echo "La raza es: " . $race . " en la palabra " . $word . "</br>";
                             return $race;
                         }
                     }

@@ -74,10 +74,11 @@
 
 
 <?php
+
     // TEST FILTERS
 
     // Strings de prueba
-    $testTweets = array(
+    /*$testTweets = array(
                         "El tweet 0414-8893387 viene de correo@dom.inio.com la mascota tiene 5 años",
                         "adopta a este gatito un pequeño terranoba, es cariñoso, vacunado, castrado y esterilizado 04256354765, ahora",
                         "el es danielito es un perro  de 1 año muy amoroso sin vacunas y esta castrado Shar Pei, escribe a lib.corrales.bravo@gma.il.net",
@@ -98,7 +99,7 @@
     foreach ($testTweets as $tweet){
         echo "</br> Tweet: " . $tweet . "</br>";
         verifyAll($tweet);
-    }
+    }*/
 
 ?>
 <!-- PLACEHOLDER FORM -->
