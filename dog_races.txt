@@ -18,6 +18,7 @@ Bernardo
 Boxer
 Rottweiler
 Samoyedo
+Chow
 PitBull
 Dalmata
 Collie
