@@ -10,6 +10,7 @@ Bichon Maltes
 Border Collie
 Shar Pei
 Gran Danes
+Chow Chow
 Labrador
 Pastor
 Beagle
@@ -18,7 +19,6 @@ Bernardo
 Boxer
 Rottweiler
 Samoyedo
-Chow
 PitBull
 Dalmata
 Collie

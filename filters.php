@@ -210,7 +210,7 @@
 
             if (!strstr($word, "http")){
                 foreach ($races as $race){
-                    if ( ($count2 <= 12) && ($count < ($wordArraylength - 1)) ){
+                    if ( ($count2 <= 13) && ($count < ($wordArraylength - 1)) ){
                         $raceAuxArray = explode(" ", $race);
                         $raceLength1 = strlen($raceAuxArray[0]);
                         $raceLength2 = strlen($raceAuxArray[1]);
