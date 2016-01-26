@@ -3,7 +3,7 @@ $(document).ready(function(){
     $(".openModal").click(function(){
         
         //--Asignar la misma foto de la ventana
-        
+        $(".modal_picture").attr("src",$(this).parent().parent().find(".img").attr("src"));
         
         //--Asignar texto al modal box basado en el click
         
