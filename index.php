@@ -71,10 +71,8 @@
                 <div class="col-xs-12 test_2">
                     <div class="test_1">
                         <ul>
-                            <li>Tu</li>
-                            <li>Corazon</li>
-                            <li>Esta</li>
-                            <li>Aqui</li>
+                            <li>Nombre:<span id="mod_nombre">Tu</span></li>
+                            <li>Raza:<span id="mod_raza">Corazon</span></li>
                         </ul>
                     </div>
                     <div class="test_3">
@@ -194,7 +192,12 @@ $counter = 0;
                                 </div>
                                 <div class='caption'>
                                     <p><?=$tweet['text']?></p>
-                                    <a href='#openModal' class='openModal'>Open Modal</a>";
+                                    <!-- El modal se llena basado en las clases que deberían identificar la caracteristica -->
+                                    <!-- Esto es lo que falta acomodar de acuerdo a lo que se obtenga de la base de datos -->
+                                    <p class="nombre hid_info">Petronilo</p>
+                                    <p class="raza hid_info">Cheetah</p>
+                                    <a href='#openModal' class='openModal'>Detalles</a>
+                                    <!-- ^^^^^^^^ -->
                                 </div>
                             </div>
                         </div>

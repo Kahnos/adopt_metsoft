@@ -52,6 +52,10 @@ body {
     color: #333;
 }
 
+.hid_info {
+    display: none;
+}
+
 footer {
     margin: 50px 0;
 }
@@ -107,6 +111,11 @@ footer {
     height: 50px;
     margin: 0 5px;
     font-size: 14px;
+    background-color: hotpink !important;
+}
+
+.but:hover{
+    background-color:gold!important;
 }
 
 .test {
@@ -129,7 +138,7 @@ footer {
     padding-top: 6px;
 }
 
-li:before {
+.test_1 li:before {
     content: "\e013";
     font-family: 'Glyphicons Halflings';
     font-size: 9px;
