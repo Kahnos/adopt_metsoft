@@ -70,17 +70,20 @@
             <a href="#close" title="Close" class="close">X</a>
                 <div class="col-xs-12 test_2">
                     <div class="test_1">
-                        <div class="test">Prueba</div>
-                        <div class="test">Prueba</div>
-                        <div class="test">Prueba</div>
-                        <div class="test">Prueba</div>
-                        <p>This is a sample modal box that can be created using the powers of CSS3.</p>
-                        <p>This is a sample modal box that can be created using the powers of CSS3.</p>
-                        <p>This is a sample modal box that can be created using the powers of CSS3.</p>
-                        <a href="#">This is a sample modal box that can be created using the powers of CSS3.</a>
+                        <ul>
+                            <li>Tu</li>
+                            <li>Corazon</li>
+                            <li>Esta</li>
+                            <li>Aqui</li>
+                        </ul>
                     </div>
                     <div class="test_3">
-                        <a class="but">Botón</a>
+                        <button type="button" class="but btn btn-info">
+                            <span class="glyphicon glyphicon-ok-circle"></span> Contactar
+                        </button>
+                        <button type="button" class="but btn btn-info">
+                            <span class="glyphicon glyphicon-remove-circle"></span> Cancelar
+                        </button>
                     </div>
                 </div>
             </div>
