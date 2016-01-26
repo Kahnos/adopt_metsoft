@@ -63,7 +63,10 @@
     <!-- Modal box -->
     <div id="openModal" class="modalDialog">
         <div id="modalInside" class="container">
+            <!--
             <img src="https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG" class="modal_picture">
+            -->
+            <img src="http://www.smashbros.com/images/og/peach.jpg" class="modal_picture">
             <a href="#close" title="Close" class="close">X</a>
                 <div class="col-xs-12 test_2">
                     <div class="test_1">
