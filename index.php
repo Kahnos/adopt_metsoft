@@ -59,37 +59,32 @@
     
     
     
-    
     <!-- Modal box -->
-    <div id="openModal" class="modalDialog">
+    <div id="openModal" class="modalDialog modalDialog_display">
         <div id="modalInside" class="container">
-            <!--
-            <img src="https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG" class="modal_picture">
-            -->
             <img src="http://www.smashbros.com/images/og/peach.jpg" class="modal_picture">
-            <a href="#close" title="Close" class="close">X</a>
                 <div class="col-xs-12 test_2">
                     <div class="test_1">
                         <ul>
-                            <li>Nombre:<span id="mod_nombre">Tu</span></li>
-                            <li>Raza:<span id="mod_raza">Corazon</span></li>
+                            <li>Raza:<span id="mod_raza">Placeholder</span></li>
+                            <li>Vacuna:<span id="mod_vacuna">Placeholder</span></li>
+                            <li>Edad:<span id="mod_edad">Placeholder</span></li>
+                            <li>Sexo:<span id="mod_sexo">Placeholder</span></li>
+                            <li>Ubicación:<span id="mod_ubicacion">Placeholder</span></li>
+                            <li>Castrado:<span id="mod_castrado">Placeholder</span></li>
                         </ul>
                     </div>
                     <div class="test_3">
-                        <button type="button" class="but btn btn-info">
+                        <button type="button" class="but btn btn-success">
                             <span class="glyphicon glyphicon-ok-circle"></span> Contactar
                         </button>
-                        <button type="button" class="but btn btn-info">
+                        <button type="button" class="but cancel btn btn-danger">
                             <span class="glyphicon glyphicon-remove-circle"></span> Cancelar
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-
-    
-    
-    
     
     <!-- Page Content -->
     <div class="container">
@@ -144,7 +139,7 @@
 
 require_once('adopt_functions.php');
 
-$settings = set_twt_api();
+//$settings = set_twt_api();
 
 // **** PLACEHOLDER FILTER ****
 
@@ -156,16 +151,19 @@ $getfield = '?q=mascota OR perro OR gato OR adopcion OR
             -compra -niño -unete -niña -bebe -"no compres" -jornada -asiste';
 
 //Validar que ya se haya cargado una vez el formulario
+
+/*
 if (isset($_GET['submitbutton']))
 {
     if($_GET['category']=='1') $getfield = '?q=adopcion+perro&count=40';
     if($_GET['category']=='2') $getfield = '?q=adopcion+gato&count=20';
     if($_GET['category']=='3') $getfield = '?q=miss+colombia&count=20';
 }
+*/
 
 // **** END OF PLACE HOLDER FILTER ****
 
-$tweets = get_twt($settings,$getfield,$url);
+//$tweets = get_twt($settings,$getfield,$url);
 
 $counter = 0;
 
@@ -182,28 +180,44 @@ $counter = 0;
             </div>
         </div>
         <div class="row">
+        <?php
+        mysql_connect("localhost", "root", "") or
+            die("Could not connect: " . mysql_error());
+        mysql_select_db("adopcion");
+
+//Esto debería ser de acuerdo a lo que pida el usuario
+        $result = mysql_query("SELECT * FROM mascota");
+
+        while ($row = mysql_fetch_assoc($result)) { ?>
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="thumbnail">
+                    <div class='image'>
+                        <?php
+                        $id_tweet = $row['id_tweet'];
+                        $result_img = mysql_query("SELECT * FROM tweet_imagen
+                                                   WHERE id_tweet = {$id_tweet}");
+                        $row_img = mysql_fetch_assoc($result_img);
+                        echo "<img src='{$row_img["url_imagen"]}' class='img img-responsive full-width'>"; ?>
+                    </div>
+                    <div class='caption'>
+                        <p class="id_tweet hid_info"><?=$row["id_tweet"]?></p>
+                        <p class="raza"><?=$row["Raza"]?></p>
+                        <p class="vacuna hid_info"><?=$row["Vacuna"]?></p>
+                        <p class="edad hid_info"><?=$row["Edad"]?></p>
+                        <p class="sexo hid_info"><?=$row["Sexo"]?></p>
+                        <p class="ubicacion"><?=$row["Ubicacion"]?></p>
+                        <p class="castrado hid_info"><?=$row["castrado"]?></p>
+                        <button type="button" class="modalOpenBut pull-right btn btn-info">
+                            <span class="glyphicon glyphicon-zoom-in"></span> Detalles
+                        </button>
+                        
+                        <!-- ^^^^^^^^ -->
+                    </div>
+                </div>
+            </div>
             <?php
-            foreach($tweets['statuses'] as $tweet){
-                if (isset($tweet['entities']['media'])){ ?>
-                        <div class="col-xs-12 col-sm-4 col-md-3">
-                            <div class="thumbnail">
-                                <div class='image'>
-                                    <img src='<?= $tweet['entities']['media'][0]['media_url']?>' class='img img-responsive full-width'>";
-                                </div>
-                                <div class='caption'>
-                                    <p><?=$tweet['text']?></p>
-                                    <!-- El modal se llena basado en las clases que deberían identificar la caracteristica -->
-                                    <!-- Esto es lo que falta acomodar de acuerdo a lo que se obtenga de la base de datos -->
-                                    <p class="nombre hid_info">Petronilo</p>
-                                    <p class="raza hid_info">Cheetah</p>
-                                    <a href='#openModal' class='openModal'>Detalles</a>
-                                    <!-- ^^^^^^^^ -->
-                                </div>
-                            </div>
-                        </div>
-            <?php
-                    }
                 }
+        mysql_free_result($result);
             ?>
     </div>
     </div>

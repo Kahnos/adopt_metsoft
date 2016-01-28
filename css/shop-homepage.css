@@ -22,7 +22,7 @@ body {
 }
 
 .caption {
-    height: 150px;
+    height: auto;
     overflow: hidden;
 }
 
@@ -81,15 +81,15 @@ footer {
     object-fit: cover;
     -webkit-border-radius: 90px;
     border-radius: 90px;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
 }
 
 .modal_picture:hover {
-    -webkit-transition: all 250ms linear;
-    -moz-transition: all 250ms linear;
-    -ms-transition: all 250ms linear;
-    -o-transition: all 250ms linear;
-    transition: all 250ms linear;
-    width: 100%;
+    max-width: 100%;
+    width: auto;
     height: auto;
     -webkit-border-radius: 10px;
     border-radius: 10px;
@@ -112,11 +112,6 @@ footer {
     height: 50px;
     margin: 0 5px;
     font-size: 14px;
-    background-color: hotpink !important;
-}
-
-.but:hover{
-    background-color:gold!important;
 }
 
 .test {
@@ -163,24 +158,27 @@ footer {
 	top: 0;right: 0;bottom: 0;left: 0;
 	background: rgba(0,0,0,0.8);
 	z-index: 99997;
-	opacity:0;
+	/*opacity:0;*/
     height: 100%;
     width: 100%;
     display: flex;
     align-items: center; 
-	pointer-events: none;
+	/*pointer-events: none;*/
     -webkit-transition: opacity 400ms ease-in;
 	-moz-transition: opacity 400ms ease-in;
 	transition: opacity 400ms ease-in;
 }
 
-.modalDialog:target {
+.modalDialog_display {
+	opacity:0;
+	pointer-events: none;
+}
+
+.modalDialog_display1 {
 	opacity:1;
 	pointer-events: auto;
-    -webkit-transition: opacity 400ms ease-in;
-	-moz-transition: opacity 400ms ease-in;
-	transition: opacity 400ms ease-in;
 }
+
 
 .modalDialog #modalInside {
 	max-width: 500px;
@@ -193,22 +191,3 @@ footer {
 	background: #fff;
     overflow: hidden;
 }
-
-.close {
-	background: #606061;
-	color: #FFFFFF;
-	line-height: 25px;
-	position: absolute;
-	right: 5px;
-	text-align: center;
-	top: 5px;
-    z-index: 99999;
-	width: 24px;
-	text-decoration: none;
-	font-weight: bold;
-	-webkit-border-radius: 12px;
-	-moz-border-radius: 12px;
-	border-radius: 12px;
-}
-
-.close:hover { background: #00d9ff; }
