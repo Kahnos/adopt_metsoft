@@ -85,14 +85,14 @@ function fill_BD(){
     $max_id = 99999999999999999999999999999999999;
     $i =0;
     for ($j=0;$j<5;$j++) {
-        $json = getJsonTweets($max_id,'2016-01-01');
+        $json = getJsonTweets($max_id,$_GET['date']);
         // since:2016-01-01
 
         //Codificamos el json
         $json = json_decode($json);
         //obtenemos un array con las filas, es decir con cada tweet.
         $rows = $json->statuses;
-        echo '</br></br>EXTRAIDOS: '.count($rows).'</br></br>';
+        // echo '</br></br>EXTRAIDOS: '.count($rows).'</br></br>';
         //Iteramos los tweets, extraemos la información y la almacenamos en la base de datos.
         foreach($rows as $row){
             //Valida queno sea retweet y que tenga foto
@@ -123,11 +123,14 @@ function fill_BD(){
              }
             $max_id = $row->id_str;
         }
-                echo $max_id.'</br>'.$i.'</br>';
+              //  echo $max_id.'</br>'.$i.'</br>';
                 //sleep(2);
     }
 }
 
 fill_BD();
+echo 'EXITO AL EXTRAER LOS TWEETS';
 
 ?>
+
+<a href='Insert_bd.php'> Llenar BD </a>

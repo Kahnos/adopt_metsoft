@@ -37,3 +37,5 @@
 	}
   echo 'Listo</br></br>';
   ?>
+  
+  <a href='index.php'> Ir a la app </a>
