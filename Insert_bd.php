@@ -26,8 +26,8 @@
 	//Se recorre la tabla y se llena la tabla mascotautilizando los filtros sobre el tweets
 	while($row = mysqli_fetch_array($table)) {
 		$tweet = $row['tweet'];
-		$sql = "insert into mascota (Raza, Vacuna, Edad, telefono, castrado, Ubicacion, id_tweet, usuario_tw, correo) 
-				values ('".verifyRace($tweet)."','".verifyVaccine($tweet)."','".verifyAge($tweet)."','".verifyTelephone($tweet)."','".verifyNeutered($tweet)."','".$row['ubicacion']."','".$row['id_tweet']."','".$row['usuario']."','".verifyMail($tweet)."');";
+		$sql = "insert into mascota (Raza, Vacuna, Edad, telefono, castrado, Ubicacion, id_tweet, usuario_tw, correo, sexo, especie) 
+				values ('".verifyRace($tweet)."','".verifyVaccine($tweet)."','".verifyAge($tweet)."','".verifyTelephone($tweet)."','".verifyNeutered($tweet)."','".$row['ubicacion']."','".$row['id_tweet']."','".$row['usuario']."','".verifyMail($tweet)."','".verifySex($tweet)."','".verifyEsp($tweet)."');";
 		$consulta = mysqli_query($connection,$sql);
 		 //Comprobamos si la consulta ha tenido éxito
 		if($consulta){

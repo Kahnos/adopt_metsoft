@@ -66,12 +66,15 @@
                 <div class="col-xs-12 test_2">
                     <div class="test_1">
                         <ul id="caracteristicas">
+                            <li>Especie:<span id="mod_especie">Placeholder</span></li>
                             <li>Raza:<span id="mod_raza">Placeholder</span></li>
                             <li>Vacuna:<span id="mod_vacuna">Placeholder</span></li>
                             <li>Edad:<span id="mod_edad">Placeholder</span></li>
                             <li>Sexo:<span id="mod_sexo">Placeholder</span></li>
                             <li>Ubicación:<span id="mod_ubicacion">Placeholder</span></li>
                             <li>Castrado:<span id="mod_castrado">Placeholder</span></li>
+                            <li>Telefono de contacto:<span id="mod_telefono">Placeholder</span></li>
+                            <li>Correo de contacto:<span id="mod_correo">Placeholder</span></li>
                         </ul>
                     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                     </div>
@@ -166,12 +169,21 @@ if (isset($_GET['submitbutton']))
 
 //$tweets = get_twt($settings,$getfield,$url);
 
-$counter = 0;
+$counter = 0; 
 
 //----------<Cargar en base de datos>
 
 //**The function needs to be updated
 //set_db();
+
+$consulta="SELECT * FROM mascota";
+if (isset($_GET['submitbutton']))
+{
+    if($_GET['category']=='1') $consulta = "SELECT * FROM mascota WHERE especie = 'perro'";
+    if($_GET['category']=='2') $consulta = "SELECT * FROM mascota WHERE especie = 'gato'";
+    if($_GET['category']=='3') $consulta = "SELECT * FROM mascota WHERE especie = 'otro'";
+}
+
 
 ?>
 
@@ -184,13 +196,14 @@ $counter = 0;
         <?php
         mysql_connect("localhost", "root", "") or
             die("Could not connect: " . mysql_error());
-        mysql_select_db("adopcion");
+mysql_query("SET NAMES utf8");
+mysql_select_db("adopcion");
 
 //Esto debería ser de acuerdo a lo que pida el usuario
-        $result = mysql_query("SELECT * FROM mascota");
+        $result = mysql_query($consulta);
 
         while ($row = mysql_fetch_assoc($result)) { ?>
-            <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="col-xs-12 col-sm-4 col-md-3">
                 <div class="thumbnail">
                     <div class='image'>
                         <?php
@@ -202,8 +215,11 @@ $counter = 0;
                     </div>
                     <div class='caption'>
                         <p class="raza"> <?=$row["Raza"]?></p>
+                        <p class="especie hid_info"> <?=$row["especie"]?></p>
+                        <p class="correo hid_info"> <?=$row["correo"]?></p>
+                        <p class="telefono hid_info"> <?=$row["telefono"]?></p>
                         <p class="vacuna hid_info"> <?=$row["Vacuna"]?></p>
-                        <p class="edad hid_info"> <?=$row["Edad"]?></p>
+                        <p class="edad hid_info"> <?=htmlspecialchars($row["Edad"], ENT_COMPAT,'ISO-8859-1', true)?></p>
                         <p class="sexo hid_info"> <?=$row["Sexo"]?></p>
                         <p class="ubicacion"> <?=$row["Ubicacion"]?></p>
                         <p class="enlace hid_info"><?php echo "https://twitter.com/intent/tweet?in_reply_to={$row['id_tweet']}";?></p>

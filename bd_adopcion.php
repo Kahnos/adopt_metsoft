@@ -4,8 +4,9 @@
 function getJsonTweets($max_id,$fecha){
         ini_set('display_errors', 1);
         require_once('vendor\j7mbo\twitter-api-php\TwitterAPIExchange.php');
-        $query = 'mascota OR perro OR gato adopta OR adopcion OR adoptar -mono -"adopta la forma" -"adopta forma" -"proyecto" -enfermedad -enfermedades -"habitossaludables" -rt -RT -"amigos por siempre" -ganadores   -venta -vender -JiaJia -donar -donacion -compra -comprar -niño -unete -niña -bebe -"no compres" -jornada -asiste';
-        /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
+      //  $query = 'mascota OR perro OR gato OR perrito OR gatito  adoptalo OR adopta OR adopcion OR adoptar vacunado OR vacuna OR vacunas OR esterilizado OR meses OR años OR año OR mes OR macho OR hembra -"adopta la forma" -"adopta forma" -"proyecto" -enfermedad -enfermedades -rt -RT -venta -vender -donar -donacion -compra -comprar -niño -unete -niña -"no compres" -jornada -asiste';
+        $query = 'mascota OR perro OR gato OR perrito OR gatito OR vacunado OR vacuna OR vacunas OR esterilizado OR meses OR años OR año OR mes OR macho OR hembra  adoptalo OR adopta OR adopcion OR adoptar -"adopta la forma" -"adopta forma" -"proyecto" -enfermedad -enfermedades -rt -RT -venta -vender -donar -donacion -compra -comprar -niño -unete -niña -"no compres" -jornada -asiste';
+	  /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
         $settings = array(
             'oauth_access_token' => "3400216702-SVZbDfvrwiYeZ64LPcaDFruzcemFWBrwbbM8bKe",
             'oauth_access_token_secret' => "DCj8wZneBvDFRtTFssRLF4WsNXmhM4EOgR6dhfMacoKoQ",
@@ -14,7 +15,7 @@ function getJsonTweets($max_id,$fecha){
         );
 
         $url = 'https://api.twitter.com/1.1/search/tweets.json';
-        $getfield = '?q='.utf8_encode($query).' since:'.$fecha.'&count=5&result_type=recent&max_id='.$max_id /*&geocode=10.5000,-66.9667,450000km' */;
+        $getfield = '?q='.utf8_encode($query).' since:'.$fecha.'&count=100&result_type=recent&max_id='.$max_id /*&geocode=10.5000,-66.9667,450000km' */;
 
         $requestMethod = 'GET';
         $twitter = new TwitterAPIExchange($settings);
@@ -83,7 +84,7 @@ function insertarTweetInfo(
 function fill_BD(){
     $max_id = 99999999999999999999999999999999999;
     $i =0;
-    for ($j=0;$j<3;$j++) {
+    for ($j=0;$j<5;$j++) {
         $json = getJsonTweets($max_id,'2016-01-01');
         // since:2016-01-01
 
@@ -109,8 +110,11 @@ function fill_BD(){
                     //echo $a_url_img[$k].'</br>';
                 }
                  $ubicacion="";
-                if(isset($row->place->full_name))
+                if(isset($row->place->full_name) && ($row->place->full_name != ""))
                     $ubicacion = $row->place->full_name;
+				else {
+					$ubicacion = "No especificado";
+				}	
                  $i++;
                 // echo 'fecha de el tweet: '.date_format(date_create($fecha_creacion),'Y-m-d').'</br>';
                  //echo $tweet.'</br>'.$i.'</br>'.$id_tweet.'</br>';
