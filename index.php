@@ -65,7 +65,7 @@
             <img src="http://www.smashbros.com/images/og/peach.jpg" class="modal_picture">
                 <div class="col-xs-12 test_2">
                     <div class="test_1">
-                        <ul>
+                        <ul id="caracteristicas">
                             <li>Raza:<span id="mod_raza">Placeholder</span></li>
                             <li>Vacuna:<span id="mod_vacuna">Placeholder</span></li>
                             <li>Edad:<span id="mod_edad">Placeholder</span></li>
@@ -73,11 +73,12 @@
                             <li>Ubicación:<span id="mod_ubicacion">Placeholder</span></li>
                             <li>Castrado:<span id="mod_castrado">Placeholder</span></li>
                         </ul>
+                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                     </div>
                     <div class="test_3">
-                        <button type="button" class="but btn btn-success">
+                        <a id="enlace" href="google.com" class="but btn btn-success">
                             <span class="glyphicon glyphicon-ok-circle"></span> Contactar
-                        </button>
+                        </a>
                         <button type="button" class="but cancel btn btn-danger">
                             <span class="glyphicon glyphicon-remove-circle"></span> Cancelar
                         </button>
@@ -189,7 +190,7 @@ $counter = 0;
         $result = mysql_query("SELECT * FROM mascota");
 
         while ($row = mysql_fetch_assoc($result)) { ?>
-            <div class="col-xs-12 col-sm-4 col-md-3">
+            <div class="col-xs-12 col-sm-4 col-md-4">
                 <div class="thumbnail">
                     <div class='image'>
                         <?php
@@ -200,13 +201,13 @@ $counter = 0;
                         echo "<img src='{$row_img["url_imagen"]}' class='img img-responsive full-width'>"; ?>
                     </div>
                     <div class='caption'>
-                        <p class="id_tweet hid_info"><?=$row["id_tweet"]?></p>
-                        <p class="raza"><?=$row["Raza"]?></p>
-                        <p class="vacuna hid_info"><?=$row["Vacuna"]?></p>
-                        <p class="edad hid_info"><?=$row["Edad"]?></p>
-                        <p class="sexo hid_info"><?=$row["Sexo"]?></p>
-                        <p class="ubicacion"><?=$row["Ubicacion"]?></p>
-                        <p class="castrado hid_info"><?=$row["castrado"]?></p>
+                        <p class="raza"> <?=$row["Raza"]?></p>
+                        <p class="vacuna hid_info"> <?=$row["Vacuna"]?></p>
+                        <p class="edad hid_info"> <?=$row["Edad"]?></p>
+                        <p class="sexo hid_info"> <?=$row["Sexo"]?></p>
+                        <p class="ubicacion"> <?=$row["Ubicacion"]?></p>
+                        <p class="enlace hid_info"><?php echo "https://twitter.com/intent/tweet?in_reply_to={$row['id_tweet']}";?></p>
+                        <p class="castrado hid_info"> <?=$row["castrado"]?></p>
                         <button type="button" class="modalOpenBut pull-right btn btn-info">
                             <span class="glyphicon glyphicon-zoom-in"></span> Detalles
                         </button>

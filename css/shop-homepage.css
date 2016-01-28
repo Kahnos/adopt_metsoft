@@ -97,7 +97,7 @@ footer {
 
 .test_3 {
     height: 20%;
-    background-color: crimson;
+    background-color:crimson;
     width: 100%;
     position: relative;
     text-align: center;
@@ -131,13 +131,23 @@ footer {
 
 .test_1 li {
     display: block;
+    font-weight: bold;
+    font-size: 15px;
     padding-top: 6px;
+}
+
+.test_3 a{
+    line-height: 39px;
+    vertical-align: middle;
+}
+.test_1 li span{
+    font-weight: normal;
 }
 
 .test_1 li:before {
     content: "\e013";
     font-family: 'Glyphicons Halflings';
-    font-size: 9px;
+    font-size: 12px;
     float: left;
     margin-top: 4px;
     margin-left: -17px;

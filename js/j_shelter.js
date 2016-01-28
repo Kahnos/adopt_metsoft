@@ -15,6 +15,7 @@ $(document).ready(function(){
         $("#openModal").find("#mod_sexo").text($(this).parent().children(".sexo").text());
         $("#openModal").find("#mod_ubicacion").text($(this).parent().children(".ubicacion").text());
         $("#openModal").find("#mod_castrado").text($(this).parent().children(".castrado").text());        
+        $("#enlace").attr("href",$(this).parent().children(".enlace").text());        
         
     });
     
