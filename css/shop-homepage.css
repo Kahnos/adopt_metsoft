@@ -97,7 +97,7 @@ footer {
 
 .test_3 {
     height: 20%;
-    background-color:crimson;
+    background-color:aliceblue;
     width: 100%;
     position: relative;
     text-align: center;
@@ -159,7 +159,7 @@ footer {
     width: 100%;
     margin: 65px 0 0 0;
     padding: 45px 0 0 0;
-    background-color: aqua;
+    background-color: aliceblue;
     overflow: hidden;
 }
 .modalDialog {
@@ -198,6 +198,6 @@ footer {
 	margin: auto;
 	padding: 0px;
 	border-radius: 15px;
-	background: #fff;
+	background-color: darkturquoise;
     overflow: hidden;
 }

@@ -45,11 +45,12 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <a href="ayuda.php">Ayuda</a>
                     </li>
+                    <!--
                     <li>
                         <a href="#">Contact</a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -105,8 +106,8 @@
 
                     <!-- Multiple Checkboxes -->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="category">Filtros_beta</label>
-                      <div class="col-md-4">
+                      <label class="col-md-6 control-label" for="category">Selecciona el tipo de mascota</label>
+                      <div class="col-md-6">
                       <div class="checkbox">
                         <label for="category-0">
                           <input type="checkbox" name="category" id="category-0" value="1">
