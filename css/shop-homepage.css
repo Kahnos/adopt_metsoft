@@ -1,0 +1,203 @@
+/*!
+ * Start Bootstrap - Shop Homepage HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+.caption {
+    height: auto;
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+.hid_info {
+    display: none;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+.image{
+    position:relative;
+    overflow:hidden;
+    padding-bottom:100%;
+}
+.image img{
+    position:absolute;
+    object-fit: cover;
+}
+
+/* -- Modal section --*/
+.modal_picture {
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    top: 15px; left: 0; right: 0;
+    margin: 0 auto;
+    z-index: 99998;
+    object-fit: cover;
+    -webkit-border-radius: 90px;
+    border-radius: 90px;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+}
+
+.modal_picture:hover {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.test_3 {
+    height: 20%;
+    background-color:aliceblue;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    padding-top: 3.25%;
+}
+
+.but{
+    
+    display: inline-block;
+    vertical-align: middle;
+    width: 35%; 
+    height: 50px;
+    margin: 0 5px;
+    font-size: 14px;
+}
+
+.test {
+    height: 25%;
+}
+
+.test_4 {
+    height: 100%;
+    width: 100%;
+}
+
+.test_1 {
+    height: 80%;
+    background-color:aliceblue;
+    overflow-y: scroll;
+}
+
+.test_1 li {
+    display: block;
+    font-weight: bold;
+    font-size: 15px;
+    padding-top: 6px;
+}
+
+.test_3 a{
+    line-height: 39px;
+    vertical-align: middle;
+}
+.test_1 li span{
+    font-weight: normal;
+}
+
+.test_1 li:before {
+    content: "\e013";
+    font-family: 'Glyphicons Halflings';
+    font-size: 12px;
+    float: left;
+    margin-top: 4px;
+    margin-left: -17px;
+    color: darkgray;
+}
+
+.test_2 {
+    height: 86%;
+    width: 100%;
+    margin: 65px 0 0 0;
+    padding: 45px 0 0 0;
+    background-color: aliceblue;
+    overflow: hidden;
+}
+.modalDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0;right: 0;bottom: 0;left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99997;
+	/*opacity:0;*/
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center; 
+	/*pointer-events: none;*/
+    -webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+}
+
+.modalDialog_display {
+	opacity:0;
+	pointer-events: none;
+}
+
+.modalDialog_display1 {
+	opacity:1;
+	pointer-events: auto;
+}
+
+
+.modalDialog #modalInside {
+	max-width: 500px;
+    width: 80%;
+    height: 80%;
+	position: relative;
+	margin: auto;
+	padding: 0px;
+	border-radius: 15px;
+	background-color: darkturquoise;
+    overflow: hidden;
+}
